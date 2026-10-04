@@ -61,3 +61,6 @@ Plan: build hero v1 from `hero-motion-blur.html` (ported to a React client compo
 3. Home with hero v1.
 4. About and Contact.
 5. SEO, Open Graph, accessibility and performance pass, placeholder check, deploy.
+
+## Next.js version notes
+@AGENTS.md

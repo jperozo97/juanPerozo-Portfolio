@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* Design tokens: "Editorial light" (see CLAUDE.md). */
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --text-secondary: #4a4a4a;
+  --text-muted: #5b5b5b;
+  --line: #e3e3e3;
+  --accent: #2a3fff;
+  /* Primary pill button: black with white text, inverted in dark mode. */
+  --pill-bg: #111111;
+  --pill-text: #ffffff;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e0f12;
+    --text: #f4f4f5;
+    --text-secondary: #c4c4c8;
+    --text-muted: #a1a1a8;
+    --line: #2a2c31;
+    --accent: #8c9bff;
+    --pill-bg: #f4f4f5;
+    --pill-text: #0e0f12;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-text: var(--text);
+  --color-secondary: var(--text-secondary);
+  --color-muted: var(--text-muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-pill: var(--pill-bg);
+  --color-pill-text: var(--pill-text);
+  --font-sans: var(--font-hanken), system-ui, sans-serif;
+  --container-site: 1200px;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+  }
+
+  a {
+    transition: color 150ms ease;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@utility container-site {
+  width: 100%;
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-inline: 20px;
+
+  @media (width >= 48rem) {
+    padding-inline: 48px;
+  }
+}
+
+@utility eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@utility h1-display {
+  font-size: clamp(40px, 6vw, 76px);
+}
