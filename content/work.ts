@@ -1,20 +1,27 @@
-// Work list. Each case study will get its own file in /content in phase 2.
+import { cases, type CaseImage } from "./cases";
 
 export type WorkItem = {
   title: string;
   summary: string;
   year: string;
-  // Set once the case study page exists.
+  // Set when the item has a case study page.
   href?: string;
+  cover?: CaseImage;
 };
 
-export const work: WorkItem[] = [
-  {
-    title: "Fedes lead panel",
-    summary:
-      "From manual follow-up to a personalized landing for every lead, built in 7 days.",
-    year: "2025",
-  },
+// Projects without a case study yet. Remove or fill in before publishing.
+const upcoming: WorkItem[] = [
   { title: "[Project 2]", summary: "[Add a one-line summary]", year: "[Year]" },
   { title: "[Project 3]", summary: "[Add a one-line summary]", year: "[Year]" },
+];
+
+export const work: WorkItem[] = [
+  ...cases.map((c) => ({
+    title: c.title,
+    summary: c.summary,
+    year: c.year,
+    href: `/work/${c.slug}/`,
+    cover: c.cover,
+  })),
+  ...upcoming,
 ];

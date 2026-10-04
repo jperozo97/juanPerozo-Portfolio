@@ -26,14 +26,28 @@ export default function Home() {
         <ul className="mt-6 border-t border-line">
           {work.map((item) => (
             <li key={item.title} className="border-b border-line">
-              <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-1 py-6">
-                <span className="text-2xl font-semibold tracking-[-0.02em]">{item.title}</span>
-                <span className="text-[15px] text-muted">{item.year}</span>
-              </div>
+              {item.href ? (
+                <Link href={item.href} className="group block">
+                  <WorkRow title={`${item.title} →`} year={item.year} />
+                </Link>
+              ) : (
+                <WorkRow title={item.title} year={item.year} />
+              )}
             </li>
           ))}
         </ul>
       </section>
     </>
+  );
+}
+
+function WorkRow({ title, year }: { title: string; year: string }) {
+  return (
+    <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-1 py-6">
+      <span className="text-2xl font-semibold tracking-[-0.02em] group-hover:text-accent">
+        {title}
+      </span>
+      <span className="text-[15px] text-muted">{year}</span>
+    </div>
   );
 }
