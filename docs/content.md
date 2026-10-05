@@ -4,6 +4,7 @@
 - Email: juandpp97@gmail.com
 - LinkedIn: linkedin.com/in/jperozo97
 - Behance: behance.net/gallery/228381143/PORTFOLIO-2025-by-JUANPEROZO
+- GitHub: github.com/jperozo97
 
 ## Positioning
 - Name: Juan Perozo

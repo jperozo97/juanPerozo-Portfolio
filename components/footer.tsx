@@ -1,14 +1,15 @@
 import type { ComponentType, SVGProps } from "react";
-import { BehanceIcon, LinkedInIcon, MailIcon } from "@/components/social-icons";
+import { BehanceIcon, GitHubIcon, LinkedInIcon, MailIcon } from "@/components/social-icons";
 import { site } from "@/content/site";
 
 export function Footer() {
-  const { email, linkedin, behance } = site.contact;
+  const { email, linkedin, behance, github } = site.contact;
 
   const links: { label: string; href: string; Icon: ComponentType<SVGProps<SVGSVGElement>> }[] = [
     { label: `Email ${email}`, href: `mailto:${email}`, Icon: MailIcon },
     { label: "LinkedIn", href: linkedin.href, Icon: LinkedInIcon },
     { label: "Behance", href: behance.href, Icon: BehanceIcon },
+    { label: "GitHub", href: github.href, Icon: GitHubIcon },
   ];
 
   return (

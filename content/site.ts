@@ -17,6 +17,10 @@ export const site = {
       label: "linkedin.com/in/jperozo97",
       href: "https://www.linkedin.com/in/jperozo97",
     },
+    github: {
+      label: "github.com/jperozo97",
+      href: "https://github.com/jperozo97",
+    },
     behance: {
       label: "Behance portfolio",
       href: "https://www.behance.net/gallery/228381143/PORTFOLIO-2025-by-JUANPEROZO",
