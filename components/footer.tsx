@@ -1,7 +1,16 @@
+import type { ComponentType, SVGProps } from "react";
+import { BehanceIcon, GitHubIcon, LinkedInIcon, MailIcon } from "@/components/social-icons";
 import { site } from "@/content/site";
 
 export function Footer() {
-  const { email, linkedin, behance } = site.contact;
+  const { email, linkedin, behance, github } = site.contact;
+
+  const links: { label: string; href: string; Icon: ComponentType<SVGProps<SVGSVGElement>> }[] = [
+    { label: `Email ${email}`, href: `mailto:${email}`, Icon: MailIcon },
+    { label: "LinkedIn", href: linkedin.href, Icon: LinkedInIcon },
+    { label: "Behance", href: behance.href, Icon: BehanceIcon },
+    { label: "GitHub", href: github.href, Icon: GitHubIcon },
+  ];
 
   return (
     <footer className="mt-24 border-t border-text">
@@ -12,23 +21,26 @@ export function Footer() {
             {site.name}
           </p>
         </div>
-        <ul className="flex flex-col gap-1.5 text-[15px]">
-          <li>
-            <a href={`mailto:${email}`} className="font-semibold hover:text-accent">
-              {email}
-            </a>
-          </li>
-          <li>
-            <a href={linkedin.href} className="hover:text-accent" rel="noopener noreferrer">
-              {linkedin.label}
-            </a>
-          </li>
-          <li>
-            <a href={behance.href} className="hover:text-accent" rel="noopener noreferrer">
-              {behance.label}
-            </a>
-          </li>
-        </ul>
+        <div className="flex flex-col gap-4 sm:items-end">
+          <a href={`mailto:${email}`} className="text-[15px] font-semibold hover:text-accent">
+            {email}
+          </a>
+          <ul className="flex gap-3">
+            {links.map(({ label, href, Icon }) => (
+              <li key={href}>
+                <a
+                  href={href}
+                  aria-label={label}
+                  title={label}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="grid size-11 place-items-center rounded-full border border-line transition-colors hover:border-accent hover:text-accent"
+                >
+                  <Icon className="size-[18px]" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </footer>
   );
