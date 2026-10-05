@@ -62,6 +62,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         <Header />
+        {/* Reserves the fixed header's full height so content starts below it. */}
+        <div aria-hidden className="h-[102px] shrink-0" />
         <main id="main" className="flex-1">
           {children}
         </main>

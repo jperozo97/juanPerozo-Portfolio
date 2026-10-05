@@ -49,7 +49,7 @@ export function WorkList({ items, previews }: { items: WorkItem[]; previews: Rea
       </ol>
 
       <div className="hidden lg:block" aria-hidden>
-        <div className="sticky top-8 grid" data-reveal>
+        <div className="sticky top-28 grid" data-reveal>
           {previews.map((preview, i) => (
             <div
               key={i}

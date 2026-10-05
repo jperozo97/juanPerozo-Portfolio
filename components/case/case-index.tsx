@@ -69,7 +69,7 @@ export function CaseIndex({ items, variant }: { items: IndexItem[]; variant: "si
     return (
       <nav
         aria-label="Case study sections"
-        className="sticky top-0 z-10 -mx-5 border-b border-line bg-bg/95 backdrop-blur md:-mx-12 lg:hidden"
+        className="sticky top-16 z-10 -mx-5 border-b border-line bg-bg/95 backdrop-blur md:-mx-12 lg:hidden"
       >
         <ol ref={barRef} className="relative flex overflow-x-auto px-2 text-[14px] [scrollbar-width:none] md:px-9">{links}</ol>
       </nav>
