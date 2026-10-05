@@ -1,4 +1,10 @@
 export const about = {
+  // From docs/content.md ("Alternative hero line").
+  headline: "I design the product, then I build it.",
+  // Portrait under /public, e.g. "/images/juan.jpg". Not shown until set.
+  photo: undefined as { src: string; alt: string } | undefined,
+  // From the profile headline in docs/content.md.
+  tools: ["Figma", "Prototyping", "Frontend", "Claude Code"],
   intro: [
     "I'm a Product Designer with 6+ years of experience. I started in brand and visual communication, and for the past few years I've worked on digital products: web apps, mobile apps and data-heavy dashboards. In a small company I'm involved in product decisions end to end: I define what gets built, validate it with high-fidelity prototypes, and work side by side with engineers so it ships as designed.",
     "My frontend background helps me speak the same language as developers. At Fedes, I designed and built in 7 days a lead management panel with Claude Code that automates follow-up and generates a personalized landing page for each prospect.",
