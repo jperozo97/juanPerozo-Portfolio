@@ -1,46 +1,25 @@
-import type { Metadata } from "next";
 import type { CSSProperties } from "react";
-import { Arrow } from "@/components/motion/arrow";
 import { CopyEmail } from "@/components/copy-email";
+import { Arrow } from "@/components/motion/arrow";
 import { PageTransition } from "@/components/motion/page-transition";
 import { PageIntro } from "@/components/page-intro";
 import { SocialLinks } from "@/components/social-links";
-import { site } from "@/content/site";
+import type { Locale } from "@/content/i18n";
+import { profile, site } from "@/content/site";
+import { ui } from "@/content/ui";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description: "Get in touch about a product designer role or a freelance project.",
-  alternates: { canonical: "/contact/" },
-};
-
-const paths = [
-  {
-    eyebrow: "Hiring",
-    title: "A product designer for your team",
-    body: "I'm open to product designer roles. I can walk you through more of my work on a call.",
-    subject: "Product designer role",
-    cta: "Write about a role",
-  },
-  {
-    eyebrow: "Freelance",
-    title: "A landing page, admin panel or MVP",
-    body: "I design and build it with Claude Code, from scope to a working product.",
-    subject: "Freelance project",
-    cta: "Tell me about your project",
-  },
-];
-
-export default function ContactPage() {
+export function ContactView({ locale }: { locale: Locale }) {
   const { email } = site.contact;
+  const t = ui[locale].contact;
 
   return (
     <PageTransition>
-      <PageIntro eyebrow="Contact" title="Let's build something worth using">
-        <p>Email is the fastest way to reach me. Tell me what you&apos;re working on.</p>
-        <p className="mt-2 text-[17px] text-muted">{site.location}</p>
+      <PageIntro eyebrow={t.eyebrow} title={t.title}>
+        <p>{t.intro}</p>
+        <p className="mt-2 text-[17px] text-muted">{profile[locale].location}</p>
       </PageIntro>
 
-      <section aria-label="Email" className="container-site">
+      <section aria-label={t.emailLabel} className="container-site">
         <a
           href={`mailto:${email}`}
           className="inline-block border-b-2 border-text pb-1 text-[28px] font-semibold tracking-[-0.02em] break-all hover:border-accent hover:text-accent sm:text-[44px]"
@@ -48,14 +27,14 @@ export default function ContactPage() {
           {email}
         </a>
         <div className="mt-6 flex flex-wrap items-center gap-4">
-          <CopyEmail email={email} />
+          <CopyEmail email={email} labels={{ copy: t.copy, copied: t.copied }} />
           <SocialLinks include={["LinkedIn", "Behance", "GitHub"]} />
         </div>
       </section>
 
-      <section aria-label="What are you looking for?" className="container-site mt-20">
+      <section aria-label={t.pathsLabel} className="container-site mt-20">
         <ul className="grid gap-6 md:grid-cols-2">
-          {paths.map((p, i) => (
+          {t.paths.map((p, i) => (
             <li
               key={p.eyebrow}
               className="flex flex-col rounded-2xl border border-line p-7 transition-[border-color,transform] duration-500 ease-out hover:-translate-y-1 hover:border-text sm:p-9"
