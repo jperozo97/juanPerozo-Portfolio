@@ -1,7 +1,12 @@
 // Single source for profile, contact and navigation copy.
 // Copy comes from docs/content.md. Keep both in sync.
 
+// Production URL, used for canonical links, the sitemap and Open Graph.
+const url = process.env.NEXT_PUBLIC_SITE_URL ?? "https://juanperozo-portfolio.vercel.app";
+
 export const site = {
+  url,
+  location: "Based in Buenos Aires, working remotely.",
   name: "Juan Perozo",
   role: "Product Designer (UX/UI)",
   headline:

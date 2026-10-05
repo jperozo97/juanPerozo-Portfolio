@@ -13,11 +13,41 @@ const hanken = Hanken_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: {
     default: `${site.name} — ${site.role}`,
     template: `%s — ${site.name}`,
   },
   description: site.description,
+  authors: [{ name: site.name, url: site.url }],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: site.name,
+    title: `${site.name} — ${site.role}`,
+    description: site.description,
+    url: "/",
+    locale: "en_US",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: `${site.name}, ${site.role}` }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — ${site.role}`,
+    description: site.description,
+    images: ["/og.png"],
+  },
+};
+
+// Structured data so search engines can show name, role and profiles.
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  jobTitle: site.role,
+  url: site.url,
+  email: `mailto:${site.contact.email}`,
+  address: { "@type": "PostalAddress", addressLocality: "Buenos Aires", addressCountry: "AR" },
+  sameAs: [site.contact.linkedin.href, site.contact.behance.href, site.contact.github.href],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -35,6 +65,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer />
+        <script
+          type="application/ld+json"
+          // Static, trusted data defined above.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
       </body>
     </html>
   );

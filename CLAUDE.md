@@ -64,3 +64,8 @@ Plan: build hero v1 from `hero-motion-blur.html` (ported to a React client compo
 
 ## Next.js version notes
 @AGENTS.md
+
+## Generated assets (keep in sync)
+- `public/images/hero-still.webp`: a pre-rendered frame of the hero effect. It is the hero background on touch screens, with reduced motion, and before WebGL starts. Regenerate it whenever the hero scene or `site.heroPhoto` changes: render the home page at 1600px wide in Chromium with a fine pointer, wait for the canvas (`data-ready="true"`), hide everything in the hero except the canvas, screenshot it and save as WebP at 1280px wide.
+- `public/og.png`: the 1200×630 Open Graph image. Regenerate it if the name, role or statement changes.
+- `npm run build` runs `scripts/check-placeholders.mjs` and fails if a bracketed placeholder is visible in `out/`. Case-study screenshots without a `src` only render (as placeholders) in `next dev`.
