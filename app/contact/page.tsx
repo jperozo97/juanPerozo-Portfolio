@@ -7,6 +7,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Contact",
   description: "Get in touch about a product designer role or a freelance project.",
+  alternates: { canonical: "/contact/" },
 };
 
 const paths = [
@@ -33,6 +34,7 @@ export default function ContactPage() {
     <>
       <PageIntro eyebrow="Contact" title="Let's build something worth using">
         <p>Email is the fastest way to reach me. Tell me what you&apos;re working on.</p>
+        <p className="mt-2 text-[17px] text-muted">{site.location}</p>
       </PageIntro>
 
       <section aria-label="Email" className="container-site">

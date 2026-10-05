@@ -61,12 +61,17 @@ export default function MotionBlurCanvas({ photo }: { photo?: string }) {
     const gl = canvas.getContext("webgl", { antialias: false, alpha: false, powerPreference: "high-performance" });
     if (!gl) return;
 
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Still frame (no loop) for reduced motion and touch screens, where there is no cursor to follow.
+    const reduce =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      window.matchMedia("(pointer: coarse)").matches;
 
     const texCanvas = document.createElement("canvas");
     texCanvas.width = TEX_W;
     texCanvas.height = TEX_H;
-    const t = texCanvas.getContext("2d")!;
+    // CPU-backed canvas: it is only painted once and uploaded as a texture, and a
+    // GPU-backed one would need a slow readback on upload.
+    const t = texCanvas.getContext("2d", { willReadFrequently: true })!;
     paintProcedural(t);
 
     let program: WebGLProgram;
@@ -109,8 +114,10 @@ export default function MotionBlurCanvas({ photo }: { photo?: string }) {
 
     let W = 1;
     let H = 1;
+    let booted = false;
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+      // The image is blurred anyway, so render at half resolution and let CSS scale it up.
+      const dpr = 0.5;
       W = stage.clientWidth;
       H = stage.clientHeight;
       canvas.width = Math.round(W * dpr);
@@ -121,6 +128,8 @@ export default function MotionBlurCanvas({ photo }: { photo?: string }) {
       if (sa > ia) gl.uniform2f(u.scale, 1, ia / sa);
       else gl.uniform2f(u.scale, sa / ia, 1);
       gl.uniform2f(u.res, W, H);
+      // Resizing clears the canvas; a still frame has no loop to repaint it.
+      if (reduce && booted) requestAnimationFrame((now) => draw(now));
     };
     resize();
     const ro = new ResizeObserver(resize);
@@ -181,11 +190,27 @@ export default function MotionBlurCanvas({ photo }: { photo?: string }) {
       cancelAnimationFrame(raf);
     };
 
-    // Reduced motion: one still frame. Otherwise animate only while visible.
-    if (reduce) draw(performance.now());
-    const io = new IntersectionObserver(([entry]) => (entry.isIntersecting ? start() : stop()));
+    // Wait until the page is idle so the effect never competes with the first render.
+    // Then draw one still frame, or animate only while the hero is visible.
+    let visible = true;
+    const io = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (!booted) return;
+      if (visible) start();
+      else stop();
+    });
+    const onVisibility = () => {
+      if (document.hidden) stop();
+      else if (visible && booted) start();
+    };
+    const boot = () => {
+      booted = true;
+      if (reduce) draw(performance.now());
+      else if (visible) start();
+    };
+    const idle = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 200));
+    const idleId = idle(boot, { timeout: 2500 });
     io.observe(stage);
-    const onVisibility = () => (document.hidden ? stop() : start());
     document.addEventListener("visibilitychange", onVisibility);
 
     if (photo) {
@@ -193,12 +218,13 @@ export default function MotionBlurCanvas({ photo }: { photo?: string }) {
       img.onload = () => {
         paintImage(t, img);
         upload();
-        if (reduce) draw(performance.now());
+        if (reduce && booted) draw(performance.now());
       };
       img.src = photo;
     }
 
     return () => {
+      (window.cancelIdleCallback ?? window.clearTimeout)(idleId);
       stop();
       io.disconnect();
       ro.disconnect();

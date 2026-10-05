@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { NavLink } from "@/components/nav-link";
-import { PillLink } from "@/components/pill-link";
 import { nav, site } from "@/content/site";
 
 export function Header() {
@@ -13,7 +12,7 @@ export function Header() {
         {nav.map((item) => (
           <NavLink key={item.href} href={item.href} label={item.label} />
         ))}
-        <PillLink href="/contact/">Contact</PillLink>
+        <NavLink href="/contact/" label="Contact" variant="pill" />
       </nav>
     </header>
   );

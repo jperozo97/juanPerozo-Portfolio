@@ -1,7 +1,14 @@
 import type { CaseImage } from "@/content/cases";
 
-// Screenshot with caption. Without a src it renders a labelled placeholder,
-// so missing assets stay visible (and caught by the placeholder check).
+// Missing screenshots show as labelled placeholders in development only,
+// so the published site never shows them.
+export const showMissingAssets = process.env.NODE_ENV === "development";
+
+export function hasImage(image?: CaseImage): image is CaseImage {
+  return Boolean(image && (image.src || showMissingAssets));
+}
+
+// Screenshot with caption.
 export function CaseFigure({ image, label }: { image: CaseImage; label?: string }) {
   return (
     <figure className="min-w-0">

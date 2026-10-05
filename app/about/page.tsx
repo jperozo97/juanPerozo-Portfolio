@@ -9,6 +9,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "About",
   description: "Product Designer with 6+ years of experience across brand, web and mobile products.",
+  alternates: { canonical: "/about/" },
 };
 
 export default function AboutPage() {
@@ -16,6 +17,7 @@ export default function AboutPage() {
     <>
       <PageIntro eyebrow="About" title={about.headline}>
         <p>{site.headline}</p>
+        <p className="mt-2 text-[17px] text-muted">{site.location}</p>
       </PageIntro>
 
       <div className="container-site grid gap-16 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-24">

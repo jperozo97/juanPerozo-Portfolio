@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
-import { CaseFigure } from "@/components/case/case-figure";
+import { CaseFigure, hasImage } from "@/components/case/case-figure";
 import { CaseIndex, type IndexItem } from "@/components/case/case-index";
 import { PanelMock } from "@/components/case/panel-mock";
 import { cases, getCase, getNextCase, type CaseStudy } from "@/content/cases";
@@ -17,7 +17,19 @@ export async function generateMetadata({ params }: PageProps<"/work/[slug]">): P
   const { slug } = await params;
   const study = getCase(slug);
   if (!study) return {};
-  return { title: study.title, description: study.summary };
+  return {
+    title: study.title,
+    description: study.summary,
+    alternates: { canonical: `/work/${study.slug}/` },
+    // Page-level openGraph replaces the root one, so the shared image is repeated here.
+    openGraph: {
+      title: study.headline,
+      description: study.summary,
+      url: `/work/${study.slug}/`,
+      type: "article",
+      images: [{ url: "/og.png", width: 1200, height: 630 }],
+    },
+  };
 }
 
 const sections: IndexItem[] = [
@@ -75,13 +87,13 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
           </Section>
 
           <div className="mb-12">
-            {study.cover ? (
+            {study.cover?.src ? (
               <CaseFigure image={study.cover} />
             ) : (
               <figure>
                 <PanelMock />
                 <figcaption className="mt-3 text-sm text-muted">
-                  Illustrative panel UI with sample data. [Replace with real screenshots]
+                  Illustrative panel UI with sample data.
                 </figcaption>
               </figure>
             )}
@@ -115,10 +127,12 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
                   </h3>
                   <p className="mb-2 max-w-[640px] text-secondary">{d.body}</p>
                   <p className="max-w-[640px] text-muted italic">{d.why}</p>
-                  {(d.before || d.after) && (
-                    <div className={`mt-6 grid gap-6 ${d.before && d.after ? "md:grid-cols-2" : ""}`}>
-                      {d.before && <CaseFigure image={d.before} label="Before" />}
-                      {d.after && <CaseFigure image={d.after} label="After" />}
+                  {(hasImage(d.before) || hasImage(d.after)) && (
+                    <div
+                      className={`mt-6 grid gap-6 ${hasImage(d.before) && hasImage(d.after) ? "md:grid-cols-2" : ""}`}
+                    >
+                      {hasImage(d.before) && <CaseFigure image={d.before} label="Before" />}
+                      {hasImage(d.after) && <CaseFigure image={d.after} label="After" />}
                     </div>
                   )}
                 </li>

@@ -12,6 +12,7 @@ export function Footer() {
           <p className="mt-1 text-[28px] font-semibold tracking-[-0.02em] sm:text-[32px]">
             {site.name}
           </p>
+          <p className="mt-1 text-sm text-muted">{site.location}</p>
         </div>
         <div className="flex flex-col gap-4 sm:items-end">
           <a href={`mailto:${email}`} className="text-[15px] font-semibold hover:text-accent">

@@ -1,6 +1,7 @@
 // Source image for the hero: a procedural "long exposure" scene, or a photo.
-export const TEX_W = 1600;
-export const TEX_H = 1000;
+// Small on purpose: the shader blurs it, and a smaller texture paints and samples faster.
+export const TEX_W = 1024;
+export const TEX_H = 640;
 
 export function paintProcedural(t: CanvasRenderingContext2D) {
   const g = t.createLinearGradient(0, 0, TEX_W, 0);
@@ -22,25 +23,23 @@ export function paintProcedural(t: CanvasRenderingContext2D) {
   glow(TEX_W * 0.55, TEX_H * 0.3, TEX_W * 0.17, "rgba(255,230,160,0.95)", "rgba(255,226,150,0)");
   glow(TEX_W * 0.86, TEX_H * 0.78, TEX_W * 0.22, "rgba(255,150,90,0.55)", "rgba(255,150,90,0)");
 
-  // Dark silhouette shapes that the blur smears into streaks.
-  t.save();
-  t.shadowColor = "rgba(24,12,10,0.95)";
-  t.shadowBlur = 110;
-  t.fillStyle = "rgba(24,12,10,0.94)";
-  t.translate(TEX_W * 0.62, TEX_H * 0.74);
-  t.rotate(-0.38);
-  t.beginPath();
-  t.ellipse(0, 0, TEX_W * 0.28, TEX_H * 0.2, 0, 0, Math.PI * 2);
-  t.fill();
-  t.restore();
-  t.save();
-  t.shadowColor = "rgba(24,12,10,0.9)";
-  t.shadowBlur = 80;
-  t.fillStyle = "rgba(30,14,12,0.92)";
-  t.beginPath();
-  t.arc(TEX_W * 0.47, TEX_H * 0.2, TEX_W * 0.075, 0, Math.PI * 2);
-  t.fill();
-  t.restore();
+  // Dark silhouette shapes that the blur smears into streaks. Soft edges come from
+  // radial gradients; canvas shadowBlur looks the same but costs hundreds of ms.
+  const softEllipse = (x: number, y: number, rx: number, ry: number, angle: number, color: string, alpha: number) => {
+    t.save();
+    t.translate(x, y);
+    t.rotate(angle);
+    t.scale(1, ry / rx);
+    const rg = t.createRadialGradient(0, 0, 0, 0, 0, rx * 1.35);
+    rg.addColorStop(0, `rgba(${color},${alpha})`);
+    rg.addColorStop(0.62, `rgba(${color},${alpha})`);
+    rg.addColorStop(1, `rgba(${color},0)`);
+    t.fillStyle = rg;
+    t.fillRect(-rx * 1.35, -rx * 1.35, rx * 2.7, rx * 2.7);
+    t.restore();
+  };
+  softEllipse(TEX_W * 0.62, TEX_H * 0.74, TEX_W * 0.28, TEX_H * 0.2, -0.38, "24,12,10", 0.94);
+  softEllipse(TEX_W * 0.47, TEX_H * 0.2, TEX_W * 0.075, TEX_W * 0.075, 0, "30,14,12", 0.92);
   glow(TEX_W * 0.56, TEX_H * 0.56, TEX_W * 0.2, "rgba(255,140,50,0.7)", "rgba(255,140,50,0)");
 }
 
