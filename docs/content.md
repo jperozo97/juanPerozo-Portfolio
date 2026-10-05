@@ -42,31 +42,30 @@ Slug: `fedes-lead-panel`
 - Metrics (no invented numbers): 7 days to build. 1 personalized landing per lead. Lead follow-up automated.
 
 ### At a glance
-- Problem: Lead follow-up was manual and proposals weren't tailored to each prospect. [Confirm and add detail]
+- Problem: Leads lived in a spreadsheet. Follow-up took too much time and too many steps, and proposals went out as a plain document.
 - What I did: A landing page plus an admin panel that captures contact-form leads, accepts manual entries and generates a personalized landing for each lead.
 - Result: Follow-up is automated and proposals are presented better. Launched recently, so sales impact is still being measured.
 
 ### The problem
-[Describe how leads were tracked and how proposals were presented before this product existed.]
+Before this product, the team tracked leads in an Excel spreadsheet. Every follow-up went through manual steps, and proposals were sent as a document.
 
 ### What I found
-- [Finding 1: what you learned about the old process]
-- [Finding 2: what the team or prospects needed]
-- [Finding 3: what was missing]
+- The spreadsheet cost time: managing leads in Excel meant a lot of lost time and too many steps between a new lead and a follow-up.
+- Leads come from more than one place: some arrive through the website form, others come from a database or are added by hand.
+- A document doesn't show the work behind it: a proposal sent as a plain file didn't tell the client that real work and care went into it.
 
 ### Decisions
-1. One landing page for every lead. Each lead gets a page that presents the benefits of working with Fedes, tailored to that prospect. [Why: add the reasoning and what you ruled out]
-2. Two ways in: the contact form and manual entry. The panel tracks every lead from the contact page and lets the team add leads from other channels by hand. [Why]
-3. Automate the follow-up, not just the tracking. Follow-up no longer depends on manual steps, and proposals arrive in a page made for the prospect. [Why]
+1. One landing page for every lead. Each lead gets a page that presents the benefits of working with Fedes, tailored to that prospect. Why: a page made for each prospect raises the quality of the service. The client can see there is work behind the proposal and that their project is taken seriously, which a plain document doesn't convey.
+2. Two ways in: the contact form and manual entry. The panel tracks every lead from the contact page and lets the team load the rest, by hand or from a database. Why: some leads come through the website form, others are imported from a database or entered by hand. The panel had to take all of them.
+3. Automate the follow-up, not just the tracking. Follow-up no longer depends on manual steps, and proposals arrive in a page made for the prospect. Why: most of the lost time was in manual steps between a new lead and a proposal. Moving the spreadsheet into a panel alone wouldn't remove them.
 
 ### Results
-Follow-up now runs on its own, and each prospect gets a proposal page made for them. Launched recently, so sales impact is not measured yet. [Next: how you will measure impact]
+Follow-up now runs on its own, and each prospect gets a proposal page made for them. Launched recently, so sales impact is not measured yet. Impact on sales will be measured by how many hot leads come in and go on to convert.
 
 ### Assets needed
 - Real screenshots of the panel and a generated landing, with sample data (before and after if possible).
 - Confirmation that Fedes allows publishing the project.
 
 ## Work list
-- [Fedes lead panel] (2025)
-- [Project 2]
-- [Project 3]
+- Fedes lead panel (2025)
+- More projects will be added later.

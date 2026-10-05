@@ -24,7 +24,7 @@ export const fedesLeadPanel: CaseStudy = {
   ],
   glance: {
     problem:
-      "Lead follow-up was manual and proposals weren't tailored to each prospect. [Confirm and add detail]",
+      "Leads lived in a spreadsheet. Follow-up took too much time and too many steps, and proposals went out as a plain document.",
     whatIDid:
       "A landing page plus an admin panel that captures contact-form leads, accepts manual entries and generates a personalized landing for each lead.",
     result:
@@ -33,38 +33,47 @@ export const fedesLeadPanel: CaseStudy = {
   problem: {
     heading: "Leads arrived, but every follow-up started from scratch.",
     body: [
-      "[Describe how leads were tracked and how proposals were presented before this product existed.]",
+      "Before this product, the team tracked leads in an Excel spreadsheet. Every follow-up went through manual steps, and proposals were sent as a document.",
     ],
   },
   findings: [
-    { title: "[Finding 1]", body: "[What you learned about the old process]" },
-    { title: "[Finding 2]", body: "[What the team or prospects needed]" },
-    { title: "[Finding 3]", body: "[What was missing]" },
+    {
+      title: "The spreadsheet cost time",
+      body: "Managing leads in Excel meant a lot of lost time and too many steps between a new lead and a follow-up.",
+    },
+    {
+      title: "Leads come from more than one place",
+      body: "Some arrive through the website form. Others come from a database or are added by hand.",
+    },
+    {
+      title: "A document doesn't show the work behind it",
+      body: "A proposal sent as a plain file didn't tell the client that real work and care went into it.",
+    },
   ],
   decisions: [
     {
       title: "One landing page for every lead",
       body: "Each lead gets a page that presents the benefits of working with Fedes, tailored to that prospect.",
-      why: "[Why: add the reasoning and what you ruled out]",
+      why: "A page made for each prospect raises the quality of the service. The client can see there is work behind the proposal and that their project is taken seriously, which a plain document doesn't convey.",
       before: { alt: "How proposals were sent before", caption: "[Before: how proposals were presented]" },
       after: { alt: "A generated landing page with sample data", caption: "[After: a generated landing, sample data]" },
     },
     {
       title: "Two ways in: the contact form and manual entry",
-      body: "The panel tracks every lead from the contact page and lets the team add leads from other channels by hand.",
-      why: "[Why: add the reasoning and what you ruled out]",
+      body: "The panel tracks every lead from the contact page and lets the team load the rest, by hand or from a database.",
+      why: "Leads don't all arrive the same way: some come through the website form, others are imported from a database or entered by hand. The panel had to take all of them, so nothing lives outside it.",
       after: { alt: "Lead list in the admin panel with sample data", caption: "[After: lead list with both sources, sample data]" },
     },
     {
       title: "Automate the follow-up, not just the tracking",
       body: "Follow-up no longer depends on manual steps, and proposals arrive in a page made for the prospect.",
-      why: "[Why: add the reasoning and what you ruled out]",
+      why: "Most of the lost time was in manual steps between a new lead and a proposal. Moving the spreadsheet into a panel alone wouldn't remove them, so the follow-up itself had to run on its own.",
       after: { alt: "Lead detail with follow-up status", caption: "[After: lead detail with follow-up status, sample data]" },
     },
   ],
   results: {
     heading: "Follow-up now runs on its own, and each prospect gets a proposal page made for them.",
     body: ["Launched recently, so sales impact is not measured yet."],
-    next: "[Next: how you will measure impact]",
+    next: "Impact on sales will be measured by how many hot leads come in and go on to convert.",
   },
 };
