@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import { PageTransition } from "@/components/motion/page-transition";
 import { PageIntro } from "@/components/page-intro";
 import { PillLink } from "@/components/pill-link";
 import { SocialLinks } from "@/components/social-links";
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <>
+    <PageTransition>
       <PageIntro eyebrow="About" title={about.headline}>
         <p>{site.headline}</p>
         <p className="mt-2 text-[17px] text-muted">{site.location}</p>
@@ -31,7 +32,7 @@ export default function AboutPage() {
           <Block number="01" title="What I do best">
             <ol className="grid gap-x-10 sm:grid-cols-2">
               {about.strengths.map((s, i) => (
-                <li key={s} className="border-t border-line py-5">
+                <li key={s} className="border-t border-line py-5" data-reveal style={delay(i)}>
                   <span className="text-sm font-bold text-accent">{String(i + 1).padStart(2, "0")}</span>
                   <p className="mt-1.5 font-medium">{s}</p>
                 </li>
@@ -42,7 +43,7 @@ export default function AboutPage() {
           <Block number="02" title="How I work">
             <ol className="grid gap-x-6 gap-y-6 sm:grid-cols-4">
               {about.process.map((step, i) => (
-                <li key={step} className="border-t border-text pt-3">
+                <li key={step} className="border-t border-text pt-3" data-reveal style={delay(i)}>
                   <span className="block text-sm text-muted">Step {i + 1}</span>
                   <span className="text-xl leading-[1.2] font-medium tracking-[-0.02em]">{step}</span>
                 </li>
@@ -52,8 +53,13 @@ export default function AboutPage() {
 
           <Block number="03" title="Tools">
             <ul className="flex flex-wrap gap-2.5">
-              {about.tools.map((tool) => (
-                <li key={tool} className="rounded-full border border-line px-4 py-2 text-[15px] font-medium">
+              {about.tools.map((tool, i) => (
+                <li
+                  key={tool}
+                  className="rounded-full border border-line px-4 py-2 text-[15px] font-medium transition-colors duration-300 hover:border-text"
+                  data-reveal
+                  style={delay(i)}
+                >
                   {tool}
                 </li>
               ))}
@@ -76,8 +82,8 @@ export default function AboutPage() {
               Experience
             </h2>
             <ol className="mt-4 border-t border-line">
-              {about.experience.map((job) => (
-                <li key={job.company} className="border-b border-line py-4">
+              {about.experience.map((job, i) => (
+                <li key={job.company} className="border-b border-line py-4" data-reveal style={delay(i)}>
                   <p className="font-semibold">{job.company}</p>
                   <p className="text-[15px] text-secondary">{job.role}</p>
                   <p className="text-sm text-muted">{job.period}</p>
@@ -89,7 +95,7 @@ export default function AboutPage() {
       </div>
 
       <section aria-labelledby="about-cta" className="container-site mt-24">
-        <div className="flex flex-wrap items-end justify-between gap-8 border-t border-text pt-10">
+        <div className="flex flex-wrap items-end justify-between gap-8 border-t border-text pt-10" data-reveal>
           <div>
             <h2 id="about-cta" className="text-[32px] sm:text-[44px]">
               Have a product to design or build?
@@ -102,18 +108,22 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-    </>
+    </PageTransition>
   );
 }
 
 function Block({ number, title, children }: { number: string; title: string; children: ReactNode }) {
   return (
     <section aria-labelledby={`about-${number}`} className="mt-20">
-      <h2 id={`about-${number}`} className="mb-6 text-[28px] leading-[1.15] tracking-[-0.02em]">
+      <h2 id={`about-${number}`} data-reveal className="mb-6 text-[28px] leading-[1.15] tracking-[-0.02em]">
         <span className="mr-3 text-muted tabular-nums">{number}</span>
         {title}
       </h2>
       {children}
     </section>
   );
+}
+
+function delay(i: number) {
+  return { "--reveal-delay": `${i * 80}ms` } as CSSProperties;
 }

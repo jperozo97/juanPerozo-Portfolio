@@ -6,6 +6,8 @@ export type WorkItem = {
   year: string;
   // Set when the item has a case study page.
   href?: string;
+  // Case study slug, used to pair the preview with the case cover during navigation.
+  slug?: string;
   cover?: CaseImage;
 };
 
@@ -15,5 +17,6 @@ export const work: WorkItem[] = cases.map((c) => ({
   summary: c.summary,
   year: c.year,
   href: `/work/${c.slug}/`,
+  slug: c.slug,
   cover: c.cover,
 }));

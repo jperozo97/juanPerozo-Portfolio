@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hanken_Grotesk } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { RevealObserver } from "@/components/motion/reveal-observer";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -65,6 +66,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer />
+        <RevealObserver />
         <script
           type="application/ld+json"
           // Static, trusted data defined above.

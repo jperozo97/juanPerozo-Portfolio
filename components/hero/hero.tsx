@@ -1,6 +1,7 @@
 import { Instrument_Serif } from "next/font/google";
 import Link from "next/link";
 import { preload } from "react-dom";
+import { Arrow } from "@/components/motion/arrow";
 import { site } from "@/content/site";
 import { HeroBackground } from "./hero-background";
 
@@ -52,12 +53,12 @@ export function Hero() {
           <div className="mt-6 flex flex-wrap items-center gap-5">
             <Link
               href="/work/"
-              className="inline-flex items-center rounded-full bg-white px-[22px] py-3 text-[15px] font-semibold text-[#111111] transition-opacity hover:opacity-90 focus-visible:outline-white"
+              className="inline-flex items-center rounded-full bg-white px-[22px] py-3 text-[15px] font-semibold text-[#111111] transition-[transform,opacity] duration-300 ease-out hover:-translate-y-0.5 hover:opacity-95 active:scale-[0.98] focus-visible:outline-white"
             >
               See my work
             </Link>
-            <Link href="/about/" className="text-[15px] font-medium hover:underline focus-visible:outline-white">
-              About me →
+            <Link href="/about/" className="group link-underline text-[15px] font-medium focus-visible:outline-white">
+              About me <Arrow />
             </Link>
           </div>
         </div>

@@ -15,7 +15,7 @@ export function Footer() {
           <p className="mt-1 text-sm text-muted">{site.location}</p>
         </div>
         <div className="flex flex-col gap-4 sm:items-end">
-          <a href={`mailto:${email}`} className="text-[15px] font-semibold hover:text-accent">
+          <a href={`mailto:${email}`} className="link-underline text-[15px] font-semibold hover:text-accent">
             {email}
           </a>
           <SocialLinks />
