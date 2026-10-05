@@ -105,3 +105,26 @@
 @utility h1-display {
   font-size: clamp(40px, 6vw, 76px);
 }
+
+/* Hero entrance. The heading only moves (never fades) so it paints immediately as the LCP. */
+@keyframes hero-rise {
+  from {
+    transform: translateY(28px);
+  }
+}
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-rise {
+    animation: hero-rise 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .hero-word {
+    animation: hero-fade 1.6s 0.2s ease both;
+  }
+  .hero-fade {
+    animation: hero-fade 1.2s 0.5s ease both;
+  }
+}
