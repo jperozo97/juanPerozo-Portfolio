@@ -128,3 +128,115 @@
     animation: hero-fade 1.2s 0.5s ease both;
   }
 }
+
+/* ---------- Motion ---------- */
+
+:root {
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Scroll reveal. Only hides content when scripts run, so it never stays hidden. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    transition:
+      opacity 0.8s var(--ease-out-soft) var(--reveal-delay, 0ms),
+      transform 0.8s var(--ease-out-soft) var(--reveal-delay, 0ms);
+  }
+  [data-reveal]:not([data-revealed]) {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+/* Link underline that grows from the left. */
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition:
+    background-size 0.35s var(--ease-out-soft),
+    color 0.15s ease;
+
+  &:hover,
+  &:focus-visible,
+  &[aria-current="page"] {
+    background-size: 100% 1px;
+  }
+}
+
+/* Page transitions (React <ViewTransition>, see components/motion/page-transition.tsx). */
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes vt-rise {
+  from {
+    transform: translateY(24px);
+  }
+}
+@keyframes vt-sink {
+  to {
+    transform: translateY(-12px);
+  }
+}
+@keyframes vt-blur {
+  40% {
+    filter: blur(4px);
+  }
+}
+
+::view-transition-old(.page-exit) {
+  animation:
+    200ms ease-in both vt-fade-out,
+    200ms ease-in both vt-sink;
+}
+::view-transition-new(.page-enter) {
+  animation:
+    450ms var(--ease-out-soft) 140ms both vt-fade-in,
+    600ms var(--ease-out-soft) 140ms both vt-rise;
+}
+
+/* Shared element between the work list preview and the case study cover. */
+::view-transition-group(.morph) {
+  animation-duration: 550ms;
+  animation-timing-function: var(--ease-out-soft);
+}
+::view-transition-image-pair(.morph) {
+  animation-name: vt-blur;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* Page intro entrance. The heading only moves (never fades) so it paints right away. */
+@keyframes intro-rise {
+  from {
+    transform: translateY(20px);
+  }
+}
+@keyframes intro-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .intro-rise {
+    animation: intro-rise 0.9s var(--ease-out-soft) both;
+  }
+  .intro-in {
+    animation: intro-in 0.8s var(--ease-out-soft) both;
+  }
+}

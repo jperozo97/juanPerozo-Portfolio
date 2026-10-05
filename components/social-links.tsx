@@ -26,7 +26,7 @@ export function SocialLinks({ include, className = "" }: { include?: string[]; c
             aria-label={label}
             title={label}
             rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-            className="grid size-11 place-items-center rounded-full border border-line transition-colors hover:border-accent hover:text-accent"
+            className="grid size-11 place-items-center rounded-full border border-line transition-[color,background-color,border-color,transform] duration-300 ease-out hover:-translate-y-0.5 hover:border-pill hover:bg-pill hover:text-pill-text"
           >
             <Icon className="size-[18px]" />
           </a>

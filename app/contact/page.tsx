@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
+import { Arrow } from "@/components/motion/arrow";
 import { CopyEmail } from "@/components/copy-email";
+import { PageTransition } from "@/components/motion/page-transition";
 import { PageIntro } from "@/components/page-intro";
 import { SocialLinks } from "@/components/social-links";
 import { site } from "@/content/site";
@@ -31,7 +34,7 @@ export default function ContactPage() {
   const { email } = site.contact;
 
   return (
-    <>
+    <PageTransition>
       <PageIntro eyebrow="Contact" title="Let's build something worth using">
         <p>Email is the fastest way to reach me. Tell me what you&apos;re working on.</p>
         <p className="mt-2 text-[17px] text-muted">{site.location}</p>
@@ -52,21 +55,26 @@ export default function ContactPage() {
 
       <section aria-label="What are you looking for?" className="container-site mt-20">
         <ul className="grid gap-6 md:grid-cols-2">
-          {paths.map((p) => (
-            <li key={p.eyebrow} className="flex flex-col rounded-2xl border border-line p-7 sm:p-9">
+          {paths.map((p, i) => (
+            <li
+              key={p.eyebrow}
+              className="flex flex-col rounded-2xl border border-line p-7 transition-[border-color,transform] duration-500 ease-out hover:-translate-y-1 hover:border-text sm:p-9"
+              data-reveal
+              style={{ "--reveal-delay": `${i * 100}ms` } as CSSProperties}
+            >
               <p className="eyebrow text-accent">{p.eyebrow}</p>
               <h2 className="mt-4 text-[26px] leading-[1.15] tracking-[-0.02em] sm:text-[30px]">{p.title}</h2>
               <p className="mt-3 mb-8 text-secondary">{p.body}</p>
               <a
                 href={`mailto:${email}?subject=${encodeURIComponent(p.subject)}`}
-                className="mt-auto inline-flex w-fit items-center rounded-full bg-pill px-[22px] py-3 text-[15px] font-semibold text-pill-text transition-opacity hover:opacity-85"
+                className="group mt-auto inline-flex w-fit items-center gap-1.5 rounded-full bg-pill px-[22px] py-3 text-[15px] font-semibold text-pill-text transition-[transform,opacity] duration-300 ease-out hover:opacity-90 active:scale-[0.98]"
               >
-                {p.cta} →
+                {p.cta} <Arrow />
               </a>
             </li>
           ))}
         </ul>
       </section>
-    </>
+    </PageTransition>
   );
 }

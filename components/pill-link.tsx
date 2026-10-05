@@ -5,7 +5,7 @@ import type { ComponentProps } from "react";
 export function PillLink({ className = "", ...props }: ComponentProps<typeof Link>) {
   return (
     <Link
-      className={`inline-flex items-center rounded-full bg-pill px-[22px] py-3 text-[15px] font-semibold text-pill-text transition-opacity hover:opacity-85 ${className}`}
+      className={`inline-flex items-center rounded-full bg-pill px-[22px] py-3 text-[15px] font-semibold text-pill-text transition-[transform,opacity] duration-300 ease-out hover:-translate-y-0.5 hover:opacity-90 active:translate-y-0 active:scale-[0.98] ${className}`}
       {...props}
     />
   );

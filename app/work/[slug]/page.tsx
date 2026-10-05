@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import type { ReactNode } from "react";
+import { ViewTransition, type CSSProperties, type ReactNode } from "react";
+import { PageTransition } from "@/components/motion/page-transition";
 import { CaseFigure, hasImage } from "@/components/case/case-figure";
 import { CaseIndex, type IndexItem } from "@/components/case/case-index";
 import { PanelMock } from "@/components/case/panel-mock";
+import { Arrow } from "@/components/motion/arrow";
 import { cases, getCase, getNextCase, type CaseStudy } from "@/content/cases";
 
 export const dynamicParams = false;
@@ -47,6 +49,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
   const next = getNextCase(slug);
 
   return (
+    <PageTransition>
     <article>
       <header className="container-site pt-12 pb-10 sm:pt-[72px]">
         <p className="eyebrow text-accent">{study.eyebrow}</p>
@@ -55,8 +58,12 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
       </header>
 
       <dl className="container-site grid gap-x-12 pb-16 sm:grid-cols-3 sm:pb-[72px]">
-        {study.metrics.map((m) => (
-          <div key={m.label} className="mt-6 flex flex-col-reverse border-t border-text pt-4">
+        {study.metrics.map((m, i) => (
+          <div
+            key={m.label}
+            className="intro-in mt-6 flex flex-col-reverse border-t border-text pt-4"
+            style={{ animationDelay: `${200 + i * 90}ms` }}
+          >
             <dt className="text-sm text-muted">{m.label}</dt>
             <dd className="text-[36px] leading-[1.15] font-medium tracking-[-0.03em] sm:text-[44px]">
               {m.value}
@@ -91,7 +98,11 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
               <CaseFigure image={study.cover} />
             ) : (
               <figure>
-                <PanelMock />
+                <ViewTransition name={`cover-${study.slug}`} share="morph" default="none">
+                  <div>
+                    <PanelMock />
+                  </div>
+                </ViewTransition>
                 <figcaption className="mt-3 text-sm text-muted">
                   Illustrative panel UI with sample data.
                 </figcaption>
@@ -108,8 +119,8 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
 
           <Section id="what-i-found" number={2} label="What I found">
             <ul className="flex max-w-[640px] flex-col gap-4">
-              {study.findings.map((f) => (
-                <li key={f.title}>
+              {study.findings.map((f, i) => (
+                <li key={f.title} data-reveal style={{ "--reveal-delay": `${i * 90}ms` } as CSSProperties}>
                   <p className="font-bold">{f.title}</p>
                   <p className="text-secondary">{f.body}</p>
                 </li>
@@ -120,7 +131,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
           <Section id="decisions" number={3} label="Decisions">
             <ol className="flex flex-col gap-14">
               {study.decisions.map((d, i) => (
-                <li key={d.title}>
+                <li key={d.title} data-reveal>
                   <p className="text-sm font-bold text-accent">Decision {i + 1}</p>
                   <h3 className="mt-1.5 mb-2.5 text-[24px] leading-[1.2] tracking-[-0.02em] sm:text-[26px]">
                     {d.title}
@@ -158,20 +169,21 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
             <Link href={`/work/${next.slug}/`} className="group inline-block">
               <span className="block text-sm text-muted">Next case</span>
               <span className="text-[28px] font-semibold tracking-[-0.02em] group-hover:text-accent sm:text-[32px]">
-                {next.title} →
+                {next.title} <Arrow />
               </span>
             </Link>
           ) : (
             <Link href="/work/" className="group inline-block">
               <span className="block text-sm text-muted">More work</span>
               <span className="text-[28px] font-semibold tracking-[-0.02em] group-hover:text-accent sm:text-[32px]">
-                All case studies →
+                All case studies <Arrow />
               </span>
             </Link>
           )}
         </div>
       </nav>
     </article>
+    </PageTransition>
   );
 }
 
@@ -189,6 +201,7 @@ function Section({
   return (
     <section
       id={id}
+      data-reveal
       aria-labelledby={`${id}-label`}
       className="scroll-mt-16 border-t border-line pt-8 pb-12 lg:scroll-mt-8"
     >
