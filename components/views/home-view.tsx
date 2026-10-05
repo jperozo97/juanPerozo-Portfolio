@@ -3,16 +3,20 @@ import type { CSSProperties } from "react";
 import { Hero } from "@/components/hero/hero";
 import { Arrow } from "@/components/motion/arrow";
 import { PageTransition } from "@/components/motion/page-transition";
-import { work } from "@/content/work";
+import type { Locale } from "@/content/i18n";
+import { ui } from "@/content/ui";
+import { getWork } from "@/content/work";
 
-export default function Home() {
+export function HomeView({ locale }: { locale: Locale }) {
+  const work = getWork(locale);
+
   return (
     <PageTransition>
-      <Hero />
+      <Hero locale={locale} />
 
       <section aria-labelledby="selected-work" className="container-site pt-20">
         <h2 id="selected-work" className="eyebrow text-muted" data-reveal>
-          Selected work
+          {ui[locale].home.selectedWork}
         </h2>
         <ul className="mt-6 border-t border-line">
           {work.map((item, i) => (

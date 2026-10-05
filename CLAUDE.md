@@ -9,7 +9,9 @@ The portfolio must show product decisions and craft, not only visuals. Case stud
 
 ## Language
 - Talk to Juan in Spanish.
-- All website content is in English.
+- The website is bilingual. English is the default at the root (`/work/`); Spanish lives under `/es` (`/es/work/`). Every page exists in both languages, and the header has a language switch to the same page in the other language.
+- Each language has its own root layout (`app/(en)/layout.tsx`, `app/(es)/layout.tsx`) so `<html lang>` is right; pages are thin wrappers around shared views in `components/views/` that take a `locale`. `app/global-not-found.tsx` handles unmatched URLs.
+- Copy lives in `/content` with both languages side by side: interface text in `content/ui.ts`, profile in `content/site.ts`, About in `content/about.ts`, and each case study file exports `{ en, es }`. Any copy change must be made in both languages.
 - Code, comments and commit messages are in English.
 
 ## Stack (recommended; change only with a reason, and say why)
@@ -67,5 +69,5 @@ Plan: build hero v1 from `hero-motion-blur.html` (ported to a React client compo
 
 ## Generated assets (keep in sync)
 - `public/images/hero-still.webp`: a pre-rendered frame of the hero effect. It is the hero background on touch screens, with reduced motion, and before WebGL starts. Regenerate it whenever the hero scene or `site.heroPhoto` changes: render the home page at 1600px wide in Chromium with a fine pointer, wait for the canvas (`data-ready="true"`), hide everything in the hero except the canvas, screenshot it and save as WebP at 1280px wide.
-- `public/og.png`: the 1200×630 Open Graph image. Regenerate it if the name, role or statement changes.
+- `public/og.png` and `public/og-es.png`: the 1200×630 Open Graph images (English and Spanish). Regenerate both if the name, role or statement changes.
 - `npm run build` runs `scripts/check-placeholders.mjs` and fails if a bracketed placeholder is visible in `out/`. Case-study screenshots without a `src` only render (as placeholders) in `next dev`.

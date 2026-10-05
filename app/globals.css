@@ -240,3 +240,16 @@
     animation: intro-in 0.8s var(--ease-out-soft) both;
   }
 }
+
+/* Mobile menu items slide in when the panel opens. */
+@keyframes menu-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .menu-item {
+    animation: menu-item-in 0.35s var(--ease-out-soft) both;
+  }
+}

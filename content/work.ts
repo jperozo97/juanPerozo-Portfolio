@@ -1,4 +1,5 @@
-import { cases, type CaseImage } from "./cases";
+import { getCases, type CaseImage } from "./cases";
+import { localePath, type Locale } from "./i18n";
 
 export type WorkItem = {
   title: string;
@@ -12,11 +13,13 @@ export type WorkItem = {
 };
 
 // Every case study, plus any project added here without one.
-export const work: WorkItem[] = cases.map((c) => ({
-  title: c.title,
-  summary: c.summary,
-  year: c.year,
-  href: `/work/${c.slug}/`,
-  slug: c.slug,
-  cover: c.cover,
-}));
+export function getWork(locale: Locale): WorkItem[] {
+  return getCases(locale).map((c) => ({
+    title: c.title,
+    summary: c.summary,
+    year: c.year,
+    href: localePath(locale, `/work/${c.slug}/`),
+    slug: c.slug,
+    cover: c.cover,
+  }));
+}

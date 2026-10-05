@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 // Copies the email address; the mailto link stays the primary action.
-export function CopyEmail({ email }: { email: string }) {
+export function CopyEmail({ email, labels }: { email: string; labels: { copy: string; copied: string } }) {
   const [copied, setCopied] = useState(false);
 
   async function copy() {
@@ -22,7 +22,7 @@ export function CopyEmail({ email }: { email: string }) {
       onClick={copy}
       className="inline-flex min-h-11 items-center rounded-full border border-line px-5 text-[15px] font-semibold transition-[color,border-color,transform] duration-300 ease-out hover:-translate-y-0.5 hover:border-accent hover:text-accent active:scale-[0.98]"
     >
-      <span aria-live="polite">{copied ? "Copied" : "Copy email"}</span>
+      <span aria-live="polite">{copied ? labels.copied : labels.copy}</span>
     </button>
   );
 }
