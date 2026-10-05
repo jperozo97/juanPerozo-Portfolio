@@ -8,6 +8,8 @@
   --text-muted: #5b5b5b;
   --line: #e3e3e3;
   --accent: #2a3fff;
+  --surface: #f5f6f8;
+  --success: #17653a;
   /* Primary pill button: black with white text, inverted in dark mode. */
   --pill-bg: #111111;
   --pill-text: #ffffff;
@@ -22,6 +24,8 @@
     --text-muted: #a1a1a8;
     --line: #2a2c31;
     --accent: #8c9bff;
+    --surface: #17181c;
+    --success: #6fd49a;
     --pill-bg: #f4f4f5;
     --pill-text: #0e0f12;
     color-scheme: dark;
@@ -35,6 +39,8 @@
   --color-muted: var(--text-muted);
   --color-line: var(--line);
   --color-accent: var(--accent);
+  --color-surface: var(--surface);
+  --color-success: var(--success);
   --color-pill: var(--pill-bg);
   --color-pill-text: var(--pill-text);
   --font-sans: var(--font-hanken), system-ui, sans-serif;
