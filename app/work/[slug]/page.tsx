@@ -76,7 +76,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
         <CaseIndex items={sections} variant="bar" />
 
         <aside className="hidden lg:block">
-          <div className="sticky top-8">
+          <div className="sticky top-28">
             <CaseIndex items={sections} variant="side" />
             <Facts study={study} className="mt-8 flex flex-col gap-3.5" />
           </div>
@@ -203,7 +203,7 @@ function Section({
       id={id}
       data-reveal
       aria-labelledby={`${id}-label`}
-      className="scroll-mt-16 border-t border-line pt-8 pb-12 lg:scroll-mt-8"
+      className="scroll-mt-36 border-t border-line pt-8 pb-12 lg:scroll-mt-28"
     >
       <p id={`${id}-label`} className="eyebrow mb-5 text-muted">
         {String(number).padStart(2, "0")} · {label}
