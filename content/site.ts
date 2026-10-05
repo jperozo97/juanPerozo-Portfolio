@@ -9,6 +9,8 @@ export const site = {
   statement: "I design digital products and help decide what's worth building.",
   subline:
     "Product Designer. Landing pages, admin panels and MVPs, built with Claude Code.",
+  // Photo used in the home hero, under /public. Leave undefined to use the procedural scene.
+  heroPhoto: undefined as string | undefined,
   description:
     "Juan Perozo is a Product Designer (UX/UI) who designs web and mobile products and builds landing pages, admin panels and MVPs with Claude Code.",
   contact: {
