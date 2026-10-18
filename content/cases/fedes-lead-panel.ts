@@ -12,6 +12,7 @@ const en: CaseStudy = {
   headline: "From manual follow-up to a personalized landing for every lead, built in 7 days",
   intro:
     "Fedes needed a faster way to follow up leads and present proposals. I defined the scope, then designed and built the whole product with Claude Code.",
+  illustration: { kind: "lead-panel", caption: "Illustrative panel UI with sample data." },
   metrics: [
     { label: "time to build", value: "7 days" },
     { label: "personalized landing", value: "1 per lead" },
@@ -88,6 +89,7 @@ const es: CaseStudy = {
   headline: "Del seguimiento manual a una landing personalizada para cada lead, construido en 7 días",
   intro:
     "Fedes necesitaba una forma más rápida de hacer seguimiento a sus leads y presentar propuestas. Definí el alcance y luego diseñé y construí todo el producto con Claude Code.",
+  illustration: { kind: "lead-panel", caption: "Interfaz ilustrativa del panel con datos de ejemplo." },
   metrics: [
     { label: "para construirlo", value: "7 días" },
     { label: "landing personalizada", value: "1 por lead" },

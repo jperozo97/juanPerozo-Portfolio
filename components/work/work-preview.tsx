@@ -1,26 +1,22 @@
-import { PanelMock } from "@/components/case/panel-mock";
-import type { CaseImage } from "@/content/cases";
+import { CaseIllustration } from "@/components/case/case-illustration";
+import type { CaseImage, IllustrationKind } from "@/content/cases";
 import type { Locale } from "@/content/i18n";
 
-// Preview shown beside the work list. Falls back to the panel illustration
-// or a labelled placeholder until real cover images exist.
+// Preview shown beside the work list: the cover screenshot when there is one,
+// otherwise the case's drawn illustration.
 export function WorkPreview({
   cover,
-  fallback,
+  illustration,
   locale,
 }: {
   cover?: CaseImage;
-  fallback: "panel" | "empty";
+  illustration?: IllustrationKind;
   locale: Locale;
 }) {
   if (cover?.src) {
     // eslint-disable-next-line @next/next/no-img-element
     return <img src={cover.src} alt="" className="w-full rounded-2xl border border-line" />;
   }
-  if (fallback === "panel") return <PanelMock locale={locale} />;
-  return (
-    <div className="grid aspect-[16/10] place-items-center rounded-2xl border border-dashed border-line bg-surface text-sm text-muted">
-      [Cover image]
-    </div>
-  );
+  if (illustration) return <CaseIllustration kind={illustration} locale={locale} />;
+  return null;
 }

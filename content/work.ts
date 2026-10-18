@@ -1,4 +1,4 @@
-import { getCases, type CaseImage } from "./cases";
+import { getCases, type CaseImage, type IllustrationKind } from "./cases";
 import { localePath, type Locale } from "./i18n";
 
 export type WorkItem = {
@@ -10,6 +10,7 @@ export type WorkItem = {
   // Case study slug, used to pair the preview with the case cover during navigation.
   slug?: string;
   cover?: CaseImage;
+  illustration?: IllustrationKind;
 };
 
 // Every case study, plus any project added here without one.
@@ -21,5 +22,6 @@ export function getWork(locale: Locale): WorkItem[] {
     href: localePath(locale, `/work/${c.slug}/`),
     slug: c.slug,
     cover: c.cover,
+    illustration: c.illustration.kind,
   }));
 }

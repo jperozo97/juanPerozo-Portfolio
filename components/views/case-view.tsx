@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ViewTransition, type CSSProperties, type ReactNode } from "react";
 import { CaseFigure, hasImage } from "@/components/case/case-figure";
 import { CaseIndex, type IndexItem } from "@/components/case/case-index";
-import { PanelMock } from "@/components/case/panel-mock";
+import { CaseIllustration } from "@/components/case/case-illustration";
 import { Arrow } from "@/components/motion/arrow";
 import { PageTransition } from "@/components/motion/page-transition";
 import { getCase, getNextCase, type CaseStudy } from "@/content/cases";
@@ -49,12 +49,12 @@ export function CaseView({ locale, slug }: { locale: Locale; slug: string }) {
         <aside className="hidden lg:block">
           <div className="sticky top-28">
             <CaseIndex items={sections} variant="side" label={t.sectionsLabel} />
-            <Facts study={study} className="mt-8 flex flex-col gap-3.5" />
+            <Facts study={study} liveSite={t.liveSite} newTab={ui[locale].newTab} className="mt-8 flex flex-col gap-3.5" />
           </div>
         </aside>
 
         <div className="min-w-0">
-          <Facts study={study} className="grid grid-cols-2 gap-4 py-8 lg:hidden" />
+          <Facts study={study} liveSite={t.liveSite} newTab={ui[locale].newTab} className="grid grid-cols-2 gap-4 py-8 lg:hidden" />
 
           <Section id="at-a-glance" number={0} label={t.sections[0]}>
             <dl className="flex flex-col gap-[18px]">
@@ -71,11 +71,11 @@ export function CaseView({ locale, slug }: { locale: Locale; slug: string }) {
               <figure>
                 <ViewTransition name={`cover-${study.slug}`} share="morph" default="none">
                   <div>
-                    <PanelMock locale={locale} />
+                    <CaseIllustration kind={study.illustration.kind} locale={locale} />
                   </div>
                 </ViewTransition>
                 <figcaption className="mt-3 text-sm text-muted">
-                  {t.illustration}
+                  {study.illustration.caption}
                 </figcaption>
               </figure>
             )}
@@ -203,7 +203,17 @@ function Prose({ paragraphs }: { paragraphs: string[] }) {
   );
 }
 
-function Facts({ study, className }: { study: CaseStudy; className: string }) {
+function Facts({
+  study,
+  className,
+  liveSite,
+  newTab,
+}: {
+  study: CaseStudy;
+  className: string;
+  liveSite: string;
+  newTab: string;
+}) {
   return (
     <dl className={`text-sm ${className}`}>
       {study.facts.map((f) => (
@@ -212,6 +222,25 @@ function Facts({ study, className }: { study: CaseStudy; className: string }) {
           <dd className="font-semibold">{f.value}</dd>
         </div>
       ))}
+      {study.link && (
+        <div>
+          <dt className="text-muted">{liveSite}</dt>
+          <dd>
+            <a
+              href={study.link.href}
+              target="_blank"
+              rel="noopener"
+              className="group link-underline font-semibold hover:text-accent"
+            >
+              {study.link.label}
+              <span aria-hidden className="ml-0.5 inline-block transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                ↗
+              </span>
+              <span className="sr-only"> {newTab}</span>
+            </a>
+          </dd>
+        </div>
+      )}
     </dl>
   );
 }

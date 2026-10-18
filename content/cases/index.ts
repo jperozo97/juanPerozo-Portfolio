@@ -1,10 +1,11 @@
 import type { Locale } from "../i18n";
 import { fedesLeadPanel } from "./fedes-lead-panel";
+import { maticaEstudio } from "./matica-estudio";
 import type { CaseStudy } from "./types";
 
 // Order here is the order on /work. Add a case by creating a file (with both
 // languages) and listing it here.
-const all = [fedesLeadPanel];
+const all = [fedesLeadPanel, maticaEstudio];
 
 export function getCases(locale: Locale): CaseStudy[] {
   return all.map((c) => c[locale]);
@@ -23,4 +24,4 @@ export function getNextCase(locale: Locale, slug: string) {
 
 export const caseSlugs = all.map((c) => c.en.slug);
 
-export type { CaseStudy, CaseImage } from "./types";
+export type { CaseStudy, CaseImage, IllustrationKind } from "./types";
