@@ -19,6 +19,7 @@ export function SiteShell({ locale, children }: { locale: Locale; children: Reac
     email: `mailto:${site.contact.email}`,
     address: { "@type": "PostalAddress", addressLocality: "Buenos Aires", addressCountry: "AR" },
     sameAs: [site.contact.linkedin.href, site.contact.behance.href, site.contact.github.href],
+    worksFor: { "@type": "Organization", name: site.matica.name, url: site.matica.url },
   };
 
   return (

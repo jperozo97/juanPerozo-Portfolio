@@ -10,6 +10,14 @@ export const site = {
   name: "Juan Perozo",
   // Photo used in the home hero, under /public. Leave undefined to use the procedural scene.
   heroPhoto: undefined as string | undefined,
+  // Juan's design-by-subscription studio. Linked quietly from the footer and Contact;
+  // the studio's landing links back to this portfolio.
+  matica: {
+    name: "Mática Estudio",
+    url: "https://maticaestudio.com/",
+    // UTM tags let the studio's analytics tell visits from the portfolio apart.
+    href: "https://maticaestudio.com/?utm_source=juanperozo&utm_medium=portfolio",
+  },
   contact: {
     email: "juandpp97@gmail.com",
     linkedin: {
