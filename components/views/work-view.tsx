@@ -21,7 +21,7 @@ export function WorkView({ locale }: { locale: Locale }) {
         <WorkList
           items={work}
           previews={work.map((item) => {
-            const preview = <WorkPreview cover={item.cover} fallback={item.href ? "panel" : "empty"} locale={locale} />;
+            const preview = <WorkPreview cover={item.cover} illustration={item.illustration} locale={locale} />;
             // Same name as the cover on the case page, so it morphs into place on navigation.
             return item.slug ? (
               <ViewTransition key={item.title} name={`cover-${item.slug}`} share="morph" default="none">
