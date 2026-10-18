@@ -6,7 +6,7 @@ export type IndexItem = { id: string; label: string };
 
 // Numbered section index. Sticky side list on desktop, sticky horizontal bar on mobile.
 // Highlights the section currently in view.
-export function CaseIndex({ items, variant }: { items: IndexItem[]; variant: "side" | "bar" }) {
+export function CaseIndex({ items, variant, label }: { items: IndexItem[]; variant: "side" | "bar"; label: string }) {
   const [active, setActive] = useState(items[0]?.id);
   const barRef = useRef<HTMLOListElement>(null);
 
@@ -68,7 +68,7 @@ export function CaseIndex({ items, variant }: { items: IndexItem[]; variant: "si
   if (variant === "bar") {
     return (
       <nav
-        aria-label="Case study sections"
+        aria-label={label}
         className="sticky top-16 z-10 -mx-5 border-b border-line bg-bg/95 backdrop-blur md:-mx-12 lg:hidden"
       >
         <ol ref={barRef} className="relative flex overflow-x-auto px-2 text-[14px] [scrollbar-width:none] md:px-9">{links}</ol>
@@ -77,7 +77,7 @@ export function CaseIndex({ items, variant }: { items: IndexItem[]; variant: "si
   }
 
   return (
-    <nav aria-label="Case study sections">
+    <nav aria-label={label}>
       <ol className="flex flex-col gap-2.5 border-l border-line pl-4 text-[15px]">{links}</ol>
     </nav>
   );

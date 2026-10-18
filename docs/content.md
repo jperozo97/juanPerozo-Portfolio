@@ -1,5 +1,7 @@
 # Site content (English)
 
+The Spanish version of every text lives next to the English one in the files under `/content`. Keep both in sync.
+
 ## Contact
 - Email: juandpp97@gmail.com
 - LinkedIn: linkedin.com/in/jperozo97

@@ -1,52 +1,23 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ViewTransition, type CSSProperties, type ReactNode } from "react";
-import { PageTransition } from "@/components/motion/page-transition";
 import { CaseFigure, hasImage } from "@/components/case/case-figure";
 import { CaseIndex, type IndexItem } from "@/components/case/case-index";
 import { PanelMock } from "@/components/case/panel-mock";
 import { Arrow } from "@/components/motion/arrow";
-import { cases, getCase, getNextCase, type CaseStudy } from "@/content/cases";
+import { PageTransition } from "@/components/motion/page-transition";
+import { getCase, getNextCase, type CaseStudy } from "@/content/cases";
+import { localePath, type Locale } from "@/content/i18n";
+import { ui } from "@/content/ui";
 
-export const dynamicParams = false;
+const sectionIds = ["at-a-glance", "the-problem", "what-i-found", "decisions", "results"];
 
-export function generateStaticParams() {
-  return cases.map((c) => ({ slug: c.slug }));
-}
-
-export async function generateMetadata({ params }: PageProps<"/work/[slug]">): Promise<Metadata> {
-  const { slug } = await params;
-  const study = getCase(slug);
-  if (!study) return {};
-  return {
-    title: study.title,
-    description: study.summary,
-    alternates: { canonical: `/work/${study.slug}/` },
-    // Page-level openGraph replaces the root one, so the shared image is repeated here.
-    openGraph: {
-      title: study.headline,
-      description: study.summary,
-      url: `/work/${study.slug}/`,
-      type: "article",
-      images: [{ url: "/og.png", width: 1200, height: 630 }],
-    },
-  };
-}
-
-const sections: IndexItem[] = [
-  { id: "at-a-glance", label: "At a glance" },
-  { id: "the-problem", label: "The problem" },
-  { id: "what-i-found", label: "What I found" },
-  { id: "decisions", label: "Decisions" },
-  { id: "results", label: "Results" },
-];
-
-export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
-  const { slug } = await params;
-  const study = getCase(slug);
+export function CaseView({ locale, slug }: { locale: Locale; slug: string }) {
+  const study = getCase(locale, slug);
   if (!study) notFound();
-  const next = getNextCase(slug);
+  const next = getNextCase(locale, slug);
+  const t = ui[locale].case;
+  const sections: IndexItem[] = sectionIds.map((id, i) => ({ id, label: t.sections[i] }));
 
   return (
     <PageTransition>
@@ -73,11 +44,11 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
       </dl>
 
       <div className="container-site grid grid-cols-[minmax(0,1fr)] gap-x-[72px] pb-24 lg:grid-cols-[200px_minmax(0,1fr)]">
-        <CaseIndex items={sections} variant="bar" />
+        <CaseIndex items={sections} variant="bar" label={t.sectionsLabel} />
 
         <aside className="hidden lg:block">
           <div className="sticky top-28">
-            <CaseIndex items={sections} variant="side" />
+            <CaseIndex items={sections} variant="side" label={t.sectionsLabel} />
             <Facts study={study} className="mt-8 flex flex-col gap-3.5" />
           </div>
         </aside>
@@ -85,11 +56,11 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
         <div className="min-w-0">
           <Facts study={study} className="grid grid-cols-2 gap-4 py-8 lg:hidden" />
 
-          <Section id="at-a-glance" number={0} label="At a glance">
+          <Section id="at-a-glance" number={0} label={t.sections[0]}>
             <dl className="flex flex-col gap-[18px]">
-              <GlanceRow term="The problem">{study.glance.problem}</GlanceRow>
-              <GlanceRow term="What I did">{study.glance.whatIDid}</GlanceRow>
-              <GlanceRow term="The result">{study.glance.result}</GlanceRow>
+              <GlanceRow term={t.glance.problem}>{study.glance.problem}</GlanceRow>
+              <GlanceRow term={t.glance.whatIDid}>{study.glance.whatIDid}</GlanceRow>
+              <GlanceRow term={t.glance.result}>{study.glance.result}</GlanceRow>
             </dl>
           </Section>
 
@@ -100,24 +71,24 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
               <figure>
                 <ViewTransition name={`cover-${study.slug}`} share="morph" default="none">
                   <div>
-                    <PanelMock />
+                    <PanelMock locale={locale} />
                   </div>
                 </ViewTransition>
                 <figcaption className="mt-3 text-sm text-muted">
-                  Illustrative panel UI with sample data.
+                  {t.illustration}
                 </figcaption>
               </figure>
             )}
           </div>
 
-          <Section id="the-problem" number={1} label="The problem">
+          <Section id="the-problem" number={1} label={t.sections[1]}>
             <h2 className="mb-4 max-w-[700px] text-[28px] leading-[1.15] tracking-[-0.02em] sm:text-[32px]">
               {study.problem.heading}
             </h2>
             <Prose paragraphs={study.problem.body} />
           </Section>
 
-          <Section id="what-i-found" number={2} label="What I found">
+          <Section id="what-i-found" number={2} label={t.sections[2]}>
             <ul className="flex max-w-[640px] flex-col gap-4">
               {study.findings.map((f, i) => (
                 <li key={f.title} data-reveal style={{ "--reveal-delay": `${i * 90}ms` } as CSSProperties}>
@@ -128,11 +99,11 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
             </ul>
           </Section>
 
-          <Section id="decisions" number={3} label="Decisions">
+          <Section id="decisions" number={3} label={t.sections[3]}>
             <ol className="flex flex-col gap-14">
               {study.decisions.map((d, i) => (
                 <li key={d.title} data-reveal>
-                  <p className="text-sm font-bold text-accent">Decision {i + 1}</p>
+                  <p className="text-sm font-bold text-accent">{t.decision} {i + 1}</p>
                   <h3 className="mt-1.5 mb-2.5 text-[24px] leading-[1.2] tracking-[-0.02em] sm:text-[26px]">
                     {d.title}
                   </h3>
@@ -142,8 +113,8 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
                     <div
                       className={`mt-6 grid gap-6 ${hasImage(d.before) && hasImage(d.after) ? "md:grid-cols-2" : ""}`}
                     >
-                      {hasImage(d.before) && <CaseFigure image={d.before} label="Before" />}
-                      {hasImage(d.after) && <CaseFigure image={d.after} label="After" />}
+                      {hasImage(d.before) && <CaseFigure image={d.before} label={t.before} />}
+                      {hasImage(d.after) && <CaseFigure image={d.after} label={t.after} />}
                     </div>
                   )}
                 </li>
@@ -151,7 +122,7 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
             </ol>
           </Section>
 
-          <Section id="results" number={4} label="Results">
+          <Section id="results" number={4} label={t.sections[4]}>
             <h2 className="mb-4 max-w-[700px] text-[28px] leading-[1.15] tracking-[-0.02em] sm:text-[32px]">
               {study.results.heading}
             </h2>
@@ -163,20 +134,20 @@ export default async function CasePage({ params }: PageProps<"/work/[slug]">) {
         </div>
       </div>
 
-      <nav aria-label="More work" className="border-t border-text">
+      <nav aria-label={t.moreWorkLabel} className="border-t border-text">
         <div className="container-site py-10">
           {next ? (
-            <Link href={`/work/${next.slug}/`} className="group inline-block">
-              <span className="block text-sm text-muted">Next case</span>
+            <Link href={localePath(locale, `/work/${next.slug}/`)} className="group inline-block">
+              <span className="block text-sm text-muted">{t.nextCase}</span>
               <span className="text-[28px] font-semibold tracking-[-0.02em] group-hover:text-accent sm:text-[32px]">
                 {next.title} <Arrow />
               </span>
             </Link>
           ) : (
-            <Link href="/work/" className="group inline-block">
-              <span className="block text-sm text-muted">More work</span>
+            <Link href={localePath(locale, "/work/")} className="group inline-block">
+              <span className="block text-sm text-muted">{t.moreWork}</span>
               <span className="text-[28px] font-semibold tracking-[-0.02em] group-hover:text-accent sm:text-[32px]">
-                All case studies <Arrow />
+                {t.allCases} <Arrow />
               </span>
             </Link>
           )}
