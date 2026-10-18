@@ -13,7 +13,7 @@ export const site = {
   // Juan's design-by-subscription studio. Linked quietly from the footer and Contact;
   // the studio's landing links back to this portfolio.
   matica: {
-    name: "Mática Estudio",
+    name: "Matica Estudio",
     url: "https://maticaestudio.com/",
     // UTM tags let the studio's analytics tell visits from the portfolio apart.
     href: "https://maticaestudio.com/?utm_source=juanperozo&utm_medium=portfolio",

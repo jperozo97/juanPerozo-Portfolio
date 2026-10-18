@@ -2,7 +2,7 @@ import type { Locale } from "@/content/i18n";
 import { site } from "@/content/site";
 import { ui } from "@/content/ui";
 
-// Low-key external link to Mática Estudio, Juan's design-by-subscription studio.
+// Low-key external link to Matica Estudio, Juan's design-by-subscription studio.
 export function MaticaLink({ locale, className = "" }: { locale: Locale; className?: string }) {
   return (
     <a
