@@ -1,3 +1,4 @@
+import { MaticaLink } from "@/components/matica-link";
 import { SocialLinks } from "@/components/social-links";
 import type { Locale } from "@/content/i18n";
 import { profile, site } from "@/content/site";
@@ -13,6 +14,9 @@ export function Footer({ locale }: { locale: Locale }) {
           <p className="text-sm text-muted">{ui[locale].footer.together}</p>
           <p className="mt-1 text-[28px] font-semibold tracking-[-0.02em] sm:text-[32px]">{site.name}</p>
           <p className="mt-1 text-sm text-muted">{profile[locale].location}</p>
+          <p className="mt-5 text-sm text-muted">
+            {ui[locale].footer.alsoMine} <MaticaLink locale={locale} />, {ui[locale].footer.matica}.
+          </p>
         </div>
         <div className="flex flex-col gap-4 sm:items-end">
           <a href={`mailto:${email}`} className="link-underline text-[15px] font-semibold hover:text-accent">

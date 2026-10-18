@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { CopyEmail } from "@/components/copy-email";
+import { MaticaLink } from "@/components/matica-link";
 import { Arrow } from "@/components/motion/arrow";
 import { PageTransition } from "@/components/motion/page-transition";
 import { PageIntro } from "@/components/page-intro";
@@ -53,6 +54,9 @@ export function ContactView({ locale }: { locale: Locale }) {
             </li>
           ))}
         </ul>
+        <p className="mt-6 text-[15px] text-muted" data-reveal>
+          {t.matica} <MaticaLink locale={locale} />.
+        </p>
       </section>
     </PageTransition>
   );

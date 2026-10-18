@@ -7,7 +7,8 @@ export const ui = {
     skip: "Skip to content",
     nav: { home: "Home", work: "Work", about: "About", contact: "Contact", label: "Main", menu: "Menu", close: "Close menu" },
     language: { switchTo: "Español", short: "ES", label: "Ver el sitio en español" },
-    footer: { together: "Let's work together" },
+    footer: { together: "Let's work together", alsoMine: "Also mine:", matica: "design by subscription" },
+    newTab: "(opens in a new tab)",
     hero: {
       lines: ["Product", "Designer", "& builder"],
       tail: "Landing pages, admin panels and MVPs, built with Claude Code.",
@@ -58,6 +59,7 @@ export const ui = {
       pathsLabel: "What are you looking for?",
       copy: "Copy email",
       copied: "Copied",
+      matica: "Prefer an ongoing design subscription instead of a one-off project? See",
       paths: [
         {
           eyebrow: "Hiring",
@@ -81,7 +83,8 @@ export const ui = {
     skip: "Saltar al contenido",
     nav: { home: "Inicio", work: "Proyectos", about: "Sobre mí", contact: "Contacto", label: "Principal", menu: "Menú", close: "Cerrar menú" },
     language: { switchTo: "English", short: "EN", label: "View the site in English" },
-    footer: { together: "Trabajemos juntos" },
+    footer: { together: "Trabajemos juntos", alsoMine: "También es mío:", matica: "diseño por suscripción" },
+    newTab: "(se abre en una pestaña nueva)",
     hero: {
       lines: ["Diseñador", "de producto", "que construye"],
       tail: "Landing pages, paneles de administración y MVPs, construidos con Claude Code.",
@@ -132,6 +135,7 @@ export const ui = {
       pathsLabel: "¿Qué estás buscando?",
       copy: "Copiar email",
       copied: "Copiado",
+      matica: "¿Prefieres una suscripción de diseño en lugar de un proyecto puntual? Mira",
       paths: [
         {
           eyebrow: "Contratación",
