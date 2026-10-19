@@ -3,7 +3,7 @@ import type { CaseStudy } from "./types";
 
 // Copy source: Juan's case study doc "Matica Estudio — caso de estudio" (Oct 2026).
 // Never invent metrics: the studio launched in October 2026 and has no results to show yet.
-// Kept out on purpose: the revenue goal. Screenshots and clips (sample data) are in public/images/matica/ and public/videos/matica/.
+// Kept out on purpose: the revenue goal. Clips (sample data) and their posters are in public/videos/matica/.
 
 const en: CaseStudy = {
   slug: "matica-estudio",
@@ -64,7 +64,7 @@ const en: CaseStudy = {
       title: "An animated studio instead of a 3D hero",
       body: "The hero shows a request arriving by chat and the piece designing itself, in an 18-second loop with three examples (a presentation, a carousel, a landing page) that end with “Delivered in 39 / 44 / 47 h”.",
       why: "I first tried a 3D hero with Three.js. The animated studio explains the service instead of decorating it, and it weighs much less.",
-      after: { src: "/images/matica/landing-hero.webp", alt: "The Matica landing page on a laptop and a phone: the headline \"Diseño por suscripción\", the promises of 48-hour delivery, a fixed monthly fee and a 7-day guarantee, and the animated studio with a request arriving by chat", caption: "The hero: a request arrives by chat and the piece takes shape next to it." },
+      after: { src: "/videos/matica/landing-hero.webp", video: "/videos/matica/landing-hero.mp4", alt: "The Matica landing page hero: the headline \"Diseño por suscripción\", the 48-hour and 7-day guarantee promises, and the animated studio, where requests arrive by chat and a pitch deck, a carousel and a landing page design themselves", caption: "The hero: a request arrives by chat and the piece takes shape next to it." },
     },
     {
       title: "One price, picked by the server",
@@ -157,7 +157,7 @@ const es: CaseStudy = {
       title: "Un estudio animado en lugar de un hero 3D",
       body: "El hero muestra un pedido que llega por chat y una pieza que se diseña sola, en un ciclo de 18 segundos con tres ejemplos (una presentación, un carrusel, una landing) que cierran con «Entregado en 39 / 44 / 47 h».",
       why: "Primero probé un hero 3D con Three.js. El estudio animado explica el servicio en vez de decorarlo, y pesa mucho menos.",
-      after: { src: "/images/matica/landing-hero.webp", alt: "La landing de Matica en una laptop y un teléfono: el título \"Diseño por suscripción\", las promesas de entrega en 48 h, cuota mensual fija y garantía de 7 días, y el estudio animado con un pedido que llega por chat", caption: "El hero: un pedido llega por chat y la pieza toma forma al lado." },
+      after: { src: "/videos/matica/landing-hero.webp", video: "/videos/matica/landing-hero.mp4", alt: "El hero de la landing de Matica: el título \"Diseño por suscripción\", las promesas de 48 horas y 7 días de garantía, y el estudio animado, donde los pedidos llegan por chat y un deck para inversores, un carrusel y una landing se diseñan solos", caption: "El hero: un pedido llega por chat y la pieza toma forma al lado." },
     },
     {
       title: "Un solo precio, elegido por el servidor",
