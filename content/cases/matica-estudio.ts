@@ -64,13 +64,12 @@ const en: CaseStudy = {
       title: "An animated studio instead of a 3D hero",
       body: "The hero shows a request arriving by chat and the piece designing itself, in an 18-second loop with three examples (a presentation, a carousel, a landing page) that end with “Delivered in 39 / 44 / 47 h”.",
       why: "I first tried a 3D hero with Three.js. The animated studio explains the service instead of decorating it, and it weighs much less.",
-      after: { src: "/images/matica/landing-hero.webp", alt: "The Matica landing page on a laptop and a phone: the headline \"Diseño por suscripción\", the 48 h, USD 390 and 7-day promises, and the animated studio with a request arriving by chat", caption: "The hero: a request arrives by chat and the piece takes shape next to it." },
+      after: { src: "/images/matica/landing-hero.webp", alt: "The Matica landing page on a laptop and a phone: the headline \"Diseño por suscripción\", the promises of 48-hour delivery, a fixed monthly fee and a 7-day guarantee, and the animated studio with a request arriving by chat", caption: "The hero: a request arrives by chat and the piece takes shape next to it." },
     },
     {
       title: "One price, picked by the server",
-      body: "Each visitor sees a single price, chosen by the server from their country: no region selector and no number changing as the page loads. Both plans share one card, with the open slots and the guarantee in view. Esencial (one active request) is USD 390 a month in Latin America, €790 in Spain and USD 790 in the US; Pro (two requests with priority, plus full branding, apps, animation and a monthly call) is USD 890, €1,490 and USD 1,490. The one-off project sits in a quiet strip, without the action color, so it doesn't compete with the plans.",
+      body: "Each visitor sees a single price, chosen by the server from their country: no region selector and no number changing as the page loads. Both plans share one card, with the open slots and the guarantee in view, so comparing them takes one look. The one-off project sits in a quiet strip, without the action color, so it doesn't compete with the plans.",
       why: "I ruled out a country selector and redirecting by language: the price arrives right from the server, and English is a link, not a redirect.",
-      after: { src: "/images/matica/pricing.webp", alt: "The pricing card: Esencial at USD 390 and Pro at USD 890 a month, the open slots and the 7-day guarantee", caption: "One price per visitor, both plans in one card, slots and guarantee in view." },
     },
     {
       title: "Its own client app, instead of Notion and a Slack bot",
@@ -158,13 +157,12 @@ const es: CaseStudy = {
       title: "Un estudio animado en lugar de un hero 3D",
       body: "El hero muestra un pedido que llega por chat y una pieza que se diseña sola, en un ciclo de 18 segundos con tres ejemplos (una presentación, un carrusel, una landing) que cierran con «Entregado en 39 / 44 / 47 h».",
       why: "Primero probé un hero 3D con Three.js. El estudio animado explica el servicio en vez de decorarlo, y pesa mucho menos.",
-      after: { src: "/images/matica/landing-hero.webp", alt: "La landing de Matica en una laptop y un teléfono: el título \"Diseño por suscripción\", las promesas de 48 h, USD 390 y 7 días, y el estudio animado con un pedido que llega por chat", caption: "El hero: un pedido llega por chat y la pieza toma forma al lado." },
+      after: { src: "/images/matica/landing-hero.webp", alt: "La landing de Matica en una laptop y un teléfono: el título \"Diseño por suscripción\", las promesas de entrega en 48 h, cuota mensual fija y garantía de 7 días, y el estudio animado con un pedido que llega por chat", caption: "El hero: un pedido llega por chat y la pieza toma forma al lado." },
     },
     {
       title: "Un solo precio, elegido por el servidor",
-      body: "Cada visitante ve un único precio, elegido en el servidor según su país: sin selector de región y sin que el número cambie al cargar la página. Los dos planes van en una tarjeta con los cupos y la garantía a la vista. Esencial (un pedido activo) cuesta USD 390 al mes en Latinoamérica, 790 € en España y USD 790 en EE. UU.; Pro (dos pedidos con prioridad, más branding completo, apps, animación y una llamada mensual) cuesta USD 890, 1.490 € y USD 1.490. El proyecto puntual va en una franja discreta, sin color de acción, para no competir con los planes.",
+      body: "Cada visitante ve un único precio, elegido en el servidor según su país: sin selector de región y sin que el número cambie al cargar la página. Los dos planes van en una tarjeta con los cupos y la garantía a la vista, para compararlos de un vistazo. El proyecto puntual va en una franja discreta, sin color de acción, para no competir con los planes.",
       why: "Descarté un selector de país y redirigir por idioma: el precio llega correcto desde el servidor y el inglés es un link, no una redirección.",
-      after: { src: "/images/matica/pricing.webp", alt: "La tarjeta de precios: Esencial a USD 390 y Pro a USD 890 al mes, los lugares disponibles y la garantía de 7 días", caption: "Un precio por visitante, los dos planes en una tarjeta, cupos y garantía a la vista." },
     },
     {
       title: "Una app de clientes propia, en lugar de Notion y un bot de Slack",
