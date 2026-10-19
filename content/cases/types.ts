@@ -1,6 +1,8 @@
 export type CaseImage = {
   // Path under /public, e.g. "/images/fedes/panel-after.png". Leave out until the asset exists.
   src?: string;
+  // Optional muted .mp4 clip under /public, with a .webm of the same name next to it; `src` is then its poster (also used where only a still fits).
+  video?: string;
   alt: string;
   caption: string;
 };
@@ -33,6 +35,8 @@ export type CaseStudy = {
     why: string;
     before?: CaseImage;
     after?: CaseImage;
+    // Further screens for the decision, shown one under another.
+    gallery?: CaseImage[];
   }[];
   results: { heading: string; body: string[]; next?: string };
 };

@@ -69,7 +69,7 @@ export function CaseView({ locale, slug }: { locale: Locale; slug: string }) {
               // Same name as the /work preview, so the cover morphs into place on navigation.
               <ViewTransition name={`cover-${study.slug}`} share="morph" default="none">
                 <div>
-                  <CaseFigure image={study.cover} />
+                  <CaseFigure image={study.cover} videoLabels={t.video} />
                 </div>
               </ViewTransition>
             ) : (
@@ -118,8 +118,15 @@ export function CaseView({ locale, slug }: { locale: Locale; slug: string }) {
                     <div
                       className={`mt-6 grid gap-6 ${hasImage(d.before) && hasImage(d.after) ? "md:grid-cols-2" : ""}`}
                     >
-                      {hasImage(d.before) && <CaseFigure image={d.before} label={t.before} />}
-                      {hasImage(d.after) && <CaseFigure image={d.after} label={hasImage(d.before) ? t.after : undefined} />}
+                      {hasImage(d.before) && <CaseFigure image={d.before} label={t.before} videoLabels={t.video} />}
+                      {hasImage(d.after) && <CaseFigure image={d.after} label={hasImage(d.before) ? t.after : undefined} videoLabels={t.video} />}
+                    </div>
+                  )}
+                  {d.gallery && d.gallery.some((g) => hasImage(g)) && (
+                    <div className="mt-6 grid gap-8">
+                      {d.gallery.filter((g) => hasImage(g)).map((g) => (
+                        <CaseFigure key={g.caption} image={g} videoLabels={t.video} />
+                      ))}
                     </div>
                   )}
                 </li>

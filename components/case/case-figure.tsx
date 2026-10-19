@@ -1,4 +1,5 @@
 import type { CaseImage } from "@/content/cases";
+import { CaseVideo } from "./case-video";
 
 // Missing screenshots show as labelled placeholders in development only,
 // so the published site never shows them.
@@ -8,11 +9,21 @@ export function hasImage(image?: CaseImage): image is CaseImage {
   return Boolean(image && (image.src || showMissingAssets));
 }
 
-// Screenshot with caption.
-export function CaseFigure({ image, label }: { image: CaseImage; label?: string }) {
+// Screenshot or product clip with caption.
+export function CaseFigure({
+  image,
+  label,
+  videoLabels,
+}: {
+  image: CaseImage;
+  label?: string;
+  videoLabels: { play: string; pause: string };
+}) {
   return (
     <figure className="min-w-0">
-      {image.src ? (
+      {image.video ? (
+        <CaseVideo src={image.video} poster={image.src} label={image.alt} labels={videoLabels} />
+      ) : image.src ? (
         // Static export: next/image optimization needs a server, so a plain img is used.
         // eslint-disable-next-line @next/next/no-img-element
         <img
