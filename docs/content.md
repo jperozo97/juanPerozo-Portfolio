@@ -75,7 +75,7 @@ Slug: `matica-estudio`
 Source: Juan's doc "Matica Estudio — caso de estudio" (October 2026). The full copy, in English and Spanish, lives in `content/cases/matica-estudio.ts`.
 
 - Juan's own design-by-subscription studio: business model, brand, landing page with pricing by country, and a client app (requests, assistant, review and approval). Launched in one week (October 11 to 18, 2026), built with Claude Code under his direction.
-- No results yet (too new). Do not publish the revenue goal. Screenshots pending: the hero animation, the pricing table and two or three app screens.
+- No results yet (too new). Do not publish the revenue goal. Screenshots (sample data) live in `public/images/matica/`: client home (cover), landing hero, pricing, request assistant + admin "Today".
 - Linked quietly from the footer and Contact; Matica's landing links back to the portfolio.
 
 ## Work list

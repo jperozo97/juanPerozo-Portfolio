@@ -66,7 +66,12 @@ export function CaseView({ locale, slug }: { locale: Locale; slug: string }) {
 
           <div className="mb-12">
             {study.cover?.src ? (
-              <CaseFigure image={study.cover} />
+              // Same name as the /work preview, so the cover morphs into place on navigation.
+              <ViewTransition name={`cover-${study.slug}`} share="morph" default="none">
+                <div>
+                  <CaseFigure image={study.cover} />
+                </div>
+              </ViewTransition>
             ) : (
               <figure>
                 <ViewTransition name={`cover-${study.slug}`} share="morph" default="none">
@@ -114,7 +119,7 @@ export function CaseView({ locale, slug }: { locale: Locale; slug: string }) {
                       className={`mt-6 grid gap-6 ${hasImage(d.before) && hasImage(d.after) ? "md:grid-cols-2" : ""}`}
                     >
                       {hasImage(d.before) && <CaseFigure image={d.before} label={t.before} />}
-                      {hasImage(d.after) && <CaseFigure image={d.after} label={t.after} />}
+                      {hasImage(d.after) && <CaseFigure image={d.after} label={hasImage(d.before) ? t.after : undefined} />}
                     </div>
                   )}
                 </li>
