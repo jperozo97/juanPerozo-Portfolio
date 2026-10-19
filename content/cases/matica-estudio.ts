@@ -3,7 +3,7 @@ import type { CaseStudy } from "./types";
 
 // Copy source: Juan's case study doc "Matica Estudio — caso de estudio" (Oct 2026).
 // Never invent metrics: the studio launched in October 2026 and has no results to show yet.
-// Kept out on purpose: the revenue goal. Screenshots (sample data) are in public/images/matica/.
+// Kept out on purpose: the revenue goal. Screenshots and clips (sample data) are in public/images/matica/ and public/videos/matica/.
 
 const en: CaseStudy = {
   slug: "matica-estudio",
@@ -14,7 +14,7 @@ const en: CaseStudy = {
   headline: "A design studio by subscription, from business model to client app, launched in one week",
   intro:
     "Matica Estudio is my monthly design subscription for startups, small businesses and agencies in Spain and Latin America. For a fixed fee, a company requests all the design it needs and gets each piece in 48 business hours. I designed it, launched it and run it: the brand, the landing page, the pricing and the app where clients request and approve their work.",
-  cover: { src: "/images/matica/client-home.webp", alt: "The Matica client app on a laptop and a phone: Marta's home with work in progress, a piece to review and her request list, with sample data", caption: "The client app: what's in progress, what to review and what's next, on desktop and mobile." },
+  cover: { src: "/videos/matica/client-list.webp", video: "/videos/matica/client-list.mp4", alt: "The Matica client app with sample data: Marta's home with the piece in progress, a delivery to review and her request list, which she reorders", caption: "The client app: what's in progress, what to review and what's next. Clients reorder their list whenever priorities change." },
   illustration: {
     kind: "matica-app",
     caption: "Illustration of the client app with sample data.",
@@ -64,19 +64,23 @@ const en: CaseStudy = {
       title: "An animated studio instead of a 3D hero",
       body: "The hero shows a request arriving by chat and the piece designing itself, in an 18-second loop with three examples (a presentation, a carousel, a landing page) that end with “Delivered in 39 / 44 / 47 h”.",
       why: "I first tried a 3D hero with Three.js. The animated studio explains the service instead of decorating it, and it weighs much less.",
-      after: { src: "/images/matica/landing-hero.webp", alt: "The Matica landing page on a laptop and a phone: the headline \"Diseño por suscripción\", the 48 h, USD 390 and 7-day promises, and the animated studio with a request arriving by chat", caption: "The hero: a request arrives by chat and the piece takes shape next to it." },
+      after: { src: "/images/matica/landing-hero.webp", alt: "The Matica landing page on a laptop and a phone: the headline \"Diseño por suscripción\", the promises of 48-hour delivery, a fixed monthly fee and a 7-day guarantee, and the animated studio with a request arriving by chat", caption: "The hero: a request arrives by chat and the piece takes shape next to it." },
     },
     {
       title: "One price, picked by the server",
-      body: "Each visitor sees a single price, chosen by the server from their country: no region selector and no number changing as the page loads. Both plans share one card, with the open slots and the guarantee in view. Esencial (one active request) is USD 390 a month in Latin America, €790 in Spain and USD 790 in the US; Pro (two requests with priority, plus full branding, apps, animation and a monthly call) is USD 890, €1,490 and USD 1,490. The one-off project sits in a quiet strip, without the action color, so it doesn't compete with the plans.",
+      body: "Each visitor sees a single price, chosen by the server from their country: no region selector and no number changing as the page loads. Both plans share one card, with the open slots and the guarantee in view, so comparing them takes one look. The one-off project sits in a quiet strip, without the action color, so it doesn't compete with the plans.",
       why: "I ruled out a country selector and redirecting by language: the price arrives right from the server, and English is a link, not a redirect.",
-      after: { src: "/images/matica/pricing.webp", alt: "The pricing card: Esencial at USD 390 and Pro at USD 890 a month, the open slots and the 7-day guarantee", caption: "One price per visitor, both plans in one card, slots and guarantee in view." },
     },
     {
       title: "Its own client app, instead of Notion and a Slack bot",
       body: "After paying, a client signs in with an email link, no password, and uploads their brand kit. They request each piece with an assistant that only asks for what's missing, or with a short form, then review, ask for changes or approve. Approving starts the next request in their list on its own. On my side, I see what's due today, billing and the business numbers.",
       why: "Notion and a Slack bot worked for taking requests, but they spread the experience across other companies' tools. One app keeps the whole relationship in one place.",
-      after: { src: "/images/matica/request-assistant.webp", alt: "Two app screens: a client requesting a piece through the assistant, with the brief filling in beside the chat, and Juan's \"Today\" view with what's due and the messages to answer", caption: "The request assistant builds the brief as the client talks; my \"Today\" view shows what needs attention." },
+      gallery: [
+        { src: "/videos/matica/request-assistant.webp", video: "/videos/matica/request-assistant.mp4", alt: "A client requests a post through the assistant: it asks only for the missing details, offers quick answers, and the brief fills in beside the chat until the request is sent", caption: "The assistant asks only for what's missing, and the brief fills in as the client answers." },
+        { src: "/videos/matica/approve.webp", video: "/videos/matica/approve.mp4", alt: "A client opens a delivered presentation, approves it, and back on the home screen the next request in the list moves to in design", caption: "Approving a delivery starts the next request in the list on its own." },
+        { src: "/videos/matica/studio-today.webp", video: "/videos/matica/studio-today.mp4", alt: "Juan's Today view: what's due today, new requests, messages to answer and clients who owe information, each with its action", caption: "My Today view: what's due, what's new and who's waiting for an answer." },
+        { src: "/videos/matica/studio-board.webp", video: "/videos/matica/studio-board.mp4", alt: "The studio's request board with columns from missing information to approved, filtered by client and with a request moved between columns", caption: "The studio board: every request by stage, filterable by client." },
+      ],
     },
     {
       title: "A warm identity with fixed color roles",
@@ -103,7 +107,7 @@ const es: CaseStudy = {
   headline: "Un estudio de diseño por suscripción, del modelo de negocio a la app de clientes, lanzado en una semana",
   intro:
     "Matica Estudio es mi estudio de diseño por suscripción mensual para startups, pymes y agencias de España y Latinoamérica. Por una cuota fija, la empresa pide todo el diseño que necesita y recibe cada pieza en 48 horas hábiles. Lo diseñé, lo puse en marcha y lo opero yo: la marca, la landing, los precios y la app donde los clientes piden y aprueban su trabajo.",
-  cover: { src: "/images/matica/client-home.webp", alt: "La app de clientes de Matica en una laptop y un teléfono: el inicio de Marta con el trabajo en curso, una pieza para revisar y su lista de pedidos, con datos de ejemplo", caption: "La app de clientes: lo que está en curso, lo que hay que revisar y lo que sigue, en escritorio y móvil." },
+  cover: { src: "/videos/matica/client-list.webp", video: "/videos/matica/client-list.mp4", alt: "La app de clientes de Matica con datos de ejemplo: el inicio de Marta con la pieza en curso, una entrega para revisar y su lista de pedidos, que reordena", caption: "La app de clientes: lo que está en curso, lo que hay que revisar y lo que sigue. El cliente reordena su lista cuando cambian las prioridades." },
   illustration: {
     kind: "matica-app",
     caption: "Ilustración de la app de clientes con datos de ejemplo.",
@@ -153,19 +157,23 @@ const es: CaseStudy = {
       title: "Un estudio animado en lugar de un hero 3D",
       body: "El hero muestra un pedido que llega por chat y una pieza que se diseña sola, en un ciclo de 18 segundos con tres ejemplos (una presentación, un carrusel, una landing) que cierran con «Entregado en 39 / 44 / 47 h».",
       why: "Primero probé un hero 3D con Three.js. El estudio animado explica el servicio en vez de decorarlo, y pesa mucho menos.",
-      after: { src: "/images/matica/landing-hero.webp", alt: "La landing de Matica en una laptop y un teléfono: el título \"Diseño por suscripción\", las promesas de 48 h, USD 390 y 7 días, y el estudio animado con un pedido que llega por chat", caption: "El hero: un pedido llega por chat y la pieza toma forma al lado." },
+      after: { src: "/images/matica/landing-hero.webp", alt: "La landing de Matica en una laptop y un teléfono: el título \"Diseño por suscripción\", las promesas de entrega en 48 h, cuota mensual fija y garantía de 7 días, y el estudio animado con un pedido que llega por chat", caption: "El hero: un pedido llega por chat y la pieza toma forma al lado." },
     },
     {
       title: "Un solo precio, elegido por el servidor",
-      body: "Cada visitante ve un único precio, elegido en el servidor según su país: sin selector de región y sin que el número cambie al cargar la página. Los dos planes van en una tarjeta con los cupos y la garantía a la vista. Esencial (un pedido activo) cuesta USD 390 al mes en Latinoamérica, 790 € en España y USD 790 en EE. UU.; Pro (dos pedidos con prioridad, más branding completo, apps, animación y una llamada mensual) cuesta USD 890, 1.490 € y USD 1.490. El proyecto puntual va en una franja discreta, sin color de acción, para no competir con los planes.",
+      body: "Cada visitante ve un único precio, elegido en el servidor según su país: sin selector de región y sin que el número cambie al cargar la página. Los dos planes van en una tarjeta con los cupos y la garantía a la vista, para compararlos de un vistazo. El proyecto puntual va en una franja discreta, sin color de acción, para no competir con los planes.",
       why: "Descarté un selector de país y redirigir por idioma: el precio llega correcto desde el servidor y el inglés es un link, no una redirección.",
-      after: { src: "/images/matica/pricing.webp", alt: "La tarjeta de precios: Esencial a USD 390 y Pro a USD 890 al mes, los lugares disponibles y la garantía de 7 días", caption: "Un precio por visitante, los dos planes en una tarjeta, cupos y garantía a la vista." },
     },
     {
       title: "Una app de clientes propia, en lugar de Notion y un bot de Slack",
       body: "Al pagar, el cliente entra con un link por correo, sin contraseña, y carga su kit de marca. Pide cada pieza con un asistente que le pregunta solo lo que falta, o con un formulario corto, y después revisa, pide cambios o aprueba. Al aprobar, arranca solo el siguiente pedido de su lista. De mi lado, veo lo que vence hoy, la facturación y los números del negocio.",
       why: "Notion y un bot de Slack servían para recibir pedidos, pero repartían la experiencia en herramientas ajenas. Una app propia deja toda la relación en un solo lugar.",
-      after: { src: "/images/matica/request-assistant.webp", alt: "Dos pantallas de la app: una clienta pide una pieza con el asistente, con el brief completándose al lado del chat, y la vista \"Hoy\" de Juan con lo que vence y los mensajes por responder", caption: "El asistente arma el brief mientras el cliente cuenta lo que necesita; mi vista \"Hoy\" muestra lo que pide atención." },
+      gallery: [
+        { src: "/videos/matica/request-assistant.webp", video: "/videos/matica/request-assistant.mp4", alt: "Una clienta pide un posteo con el asistente: pregunta solo los datos que faltan, ofrece respuestas rápidas y el brief se completa al lado del chat hasta que el pedido se carga", caption: "El asistente pregunta solo lo que falta, y el brief se completa mientras el cliente responde." },
+        { src: "/videos/matica/approve.webp", video: "/videos/matica/approve.mp4", alt: "Una clienta abre una presentación entregada, la aprueba y, al volver al inicio, el siguiente pedido de la lista pasa a en diseño", caption: "Al aprobar una entrega, arranca solo el siguiente pedido de la lista." },
+        { src: "/videos/matica/studio-today.webp", video: "/videos/matica/studio-today.mp4", alt: "La vista Hoy de Juan: lo que vence hoy, los pedidos nuevos, los mensajes por responder y los clientes que deben información, cada uno con su acción", caption: "Mi vista Hoy: lo que vence, lo nuevo y quién espera respuesta." },
+        { src: "/videos/matica/studio-board.webp", video: "/videos/matica/studio-board.mp4", alt: "El tablero de pedidos del estudio con columnas desde falta información hasta aprobado, filtrado por cliente y con un pedido que cambia de columna", caption: "El tablero del estudio: cada pedido por etapa, filtrable por cliente." },
+      ],
     },
     {
       title: "Una identidad cálida con colores de función fija",
